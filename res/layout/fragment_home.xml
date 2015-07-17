@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:trainingclass="http://schemas.android.com/apk/res/com.xue.trainingclass.activity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp" >
+
+        <TextView
+            android:id="@+id/titleNews"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/pink_blue"
+            android:gravity="center"
+            android:text="最新资讯"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <RelativeLayout
+            android:id="@+id/titleShow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/pink_blue" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="风采展示"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <ImageButton
+                android:id="@+id/addShow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:padding="8dp"
+                android:src="@drawable/add" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/titleInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/pink_blue"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/classify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:padding="5dp"
+                android:text="分类"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/search"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_edit_search"
+                android:drawableLeft="@drawable/icon_find"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                android:padding="5dp"
+                android:text="地区"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <com.xue.trainingclass.view.PagerSlidingTabStrip
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/background_tab"
+        trainingclass:pstsIndicatorHeight="4dp"
+        trainingclass:pstsShouldExpand="true"
+        trainingclass:pstsUnderlineHeight="1dp" >
+    </com.xue.trainingclass.view.PagerSlidingTabStrip>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/homeVP"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+    </android.support.v4.view.ViewPager>
+
+</LinearLayout>

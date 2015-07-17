@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 最新课程 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+ <com.xue.trainingclass.view.HotHeaderPager
+        android:id="@+id/hotpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </com.xue.trainingclass.view.HotHeaderPager>
+    
+    <com.xue.trainingclass.view.XListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:dividerHeight="10dp"
+        android:scrollbars="@null">
+        </com.xue.trainingclass.view.XListView>
+</LinearLayout>
