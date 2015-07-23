@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -23,17 +24,29 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobUser;
 
 import com.xue.trainingclass.adapter.MenuAdapter;
+import com.xue.trainingclass.bean.User;
+import com.xue.trainingclass.event.ChangePageEvent;
+import com.xue.trainingclass.event.FinishEvent;
 import com.xue.trainingclass.fragment.ChatFragment;
 import com.xue.trainingclass.fragment.HomeFragment;
 import com.xue.trainingclass.fragment.MeFragment;
 import com.xue.trainingclass.fragment.MessageFragment;
 import com.xue.trainingclass.fragment.HomeFragment.OnSelectClassListener;
+import com.xue.trainingclass.tool.CommonTools;
+
+import de.greenrobot.event.EventBus;
 
 public class MainActivity extends FragmentActivity implements
 		OnSelectClassListener, OnClickListener {
 
+	public static final int PAGE_HOME=0;
+	public static final int PAGE_CHAT=1;
+	public static final int PAGE_MESSAGE=2;
+	public static final int PAGE_ME=3;
 	DrawerLayout mDrawerLayout;
 	GridView mMenu;
 	MenuAdapter mMenuAdapter;
@@ -49,7 +62,11 @@ public class MainActivity extends FragmentActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
+
+		// ≥ı ºªØbmob
+		Bmob.initialize(this, "3fd72dc811e0bbc06e0aba38364015ea");
 
 		HashMap<String, Object> menu1 = new HashMap<String, Object>();
 		menu1.put("imgSrc",
@@ -77,6 +94,33 @@ public class MainActivity extends FragmentActivity implements
 		init();
 
 		mHome.performClick();
+
+		if (!EventBus.getDefault().isRegistered(this)) {
+			EventBus.getDefault().register(this);
+		}
+	}
+
+	public void onEvent(FinishEvent event) {
+		finish();
+	}
+	
+	public void onEvent(ChangePageEvent event) {
+		switch (event.page) {
+		case PAGE_HOME:
+			mHome.performClick();
+			break;
+		case PAGE_CHAT:
+			mChat.performClick();
+			break;
+		case PAGE_MESSAGE:
+			mMessage.performClick();
+			break;
+		case PAGE_ME:
+			mMe.performClick();
+			break;
+		default:
+			break;
+		}
 	}
 
 	public void init() {
@@ -113,42 +157,48 @@ public class MainActivity extends FragmentActivity implements
 
 	@Override
 	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.ll_home:
-			setSelected(v);
-			FragmentTransaction ft = getSupportFragmentManager()
-					.beginTransaction();
-			ft.replace(R.id.frame_content, new HomeFragment(this));
-			ft.commit();
-			break;
-		case R.id.ll_chat:
-			setSelected(v);
-			FragmentTransaction ft1 = getSupportFragmentManager()
-					.beginTransaction();
-			ft1.replace(R.id.frame_content, new ChatFragment());
-			ft1.commit();
-			break;
-		case R.id.ll_message:
-			setSelected(v);
-			FragmentTransaction ft2 = getSupportFragmentManager()
-					.beginTransaction();
-			ft2.replace(R.id.frame_content, new MessageFragment());
-			ft2.commit();
-			break;
-		case R.id.ll_me:
-			setSelected(v);
-			FragmentTransaction ft3 = getSupportFragmentManager()
-					.beginTransaction();
-			ft3.replace(R.id.frame_content, new MeFragment());
-			ft3.commit();
-			break;
-		case R.id.ll_publish:
-			Intent intent = new Intent(MainActivity.this, PublishActivity.class);
-			startActivity(intent);
-			break;
+		User user = BmobUser.getCurrentUser(MainActivity.this, User.class);
+		if (!(v.getId() == R.id.ll_home) && user == null) {
+			CommonTools.loginFirst(MainActivity.this);
+		} else {
+			switch (v.getId()) {
+			case R.id.ll_home:
+				setSelected(v);
+				FragmentTransaction ft = getSupportFragmentManager()
+						.beginTransaction();
+				ft.replace(R.id.frame_content, new HomeFragment(this));
+				ft.commit();
+				break;
+			case R.id.ll_chat:
+				setSelected(v);
+				FragmentTransaction ft1 = getSupportFragmentManager()
+						.beginTransaction();
+				ft1.replace(R.id.frame_content, new ChatFragment());
+				ft1.commit();
+				break;
+			case R.id.ll_message:
+				setSelected(v);
+				FragmentTransaction ft2 = getSupportFragmentManager()
+						.beginTransaction();
+				ft2.replace(R.id.frame_content, new MessageFragment());
+				ft2.commit();
+				break;
+			case R.id.ll_me:
+				setSelected(v);
+				FragmentTransaction ft3 = getSupportFragmentManager()
+						.beginTransaction();
+				ft3.replace(R.id.frame_content, new MeFragment());
+				ft3.commit();
+				break;
+			case R.id.ll_publish:
+				Intent intent = new Intent(MainActivity.this,
+						PublishActivity.class);
+				startActivity(intent);
+				break;
 
-		default:
-			break;
+			default:
+				break;
+			}
 		}
 
 	}

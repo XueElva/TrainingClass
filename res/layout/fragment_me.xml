@@ -3,6 +3,165 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="@null" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/pink_blue"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="我"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/setting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:padding="10dp"
+                    android:src="@drawable/icon_setting" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp" >
+
+                <ImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/ic_launcher" />
+
+                <TextView
+                    android:id="@+id/userName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="18sp"
+                    android:layout_toRightOf="@id/avatar"
+                    android:text="用户名" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/shadow_top" />
+
+            <TextView
+                android:id="@+id/myCollection"
+                style="@style/myItem"
+                android:drawableLeft="@drawable/icon_star"
+                android:drawableRight="@drawable/icon_more_15"
+                android:text="我的收藏" />
+
+            <include layout="@layout/shadow_top" />
+
+            <TextView
+                android:id="@+id/myPublishChat"
+                style="@style/myItem"
+                android:drawableLeft="@drawable/ic_launcher"
+                android:drawableRight="@drawable/icon_more_15"
+                android:text="我的发表" />
+
+            <include layout="@layout/shadow_bottom" />
+
+            <!-- 商家部分 -->
+
+            <LinearLayout
+                android:id="@+id/seller"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical" >
+
+                <include layout="@layout/shadow_top" />
+
+                <TextView
+                    android:id="@+id/myPublish"
+                    style="@style/myItem"
+                    android:drawableLeft="@drawable/ic_launcher"
+                    android:drawableRight="@drawable/icon_more_15"
+                    android:text="我的发布" />
+
+                <include layout="@layout/shadow_top" />
+
+                <TextView
+                    android:id="@+id/upgrade"
+                    style="@style/myItem"
+                    android:drawableLeft="@drawable/ic_launcher"
+                    android:drawableRight="@drawable/icon_more_15"
+                    android:text="升级为会员" />
+
+                <include layout="@layout/shadow_top" />
+
+                <TextView
+                    android:id="@+id/publishAdvertisement"
+                    style="@style/myItem"
+                    android:drawableLeft="@drawable/ic_launcher"
+                    android:drawableRight="@drawable/icon_more_15"
+                    android:text="发布广告" />
+
+                <include layout="@layout/shadow_bottom" />
+            </LinearLayout>
+
+            <!-- 普通用户 -->
+
+            <LinearLayout
+                android:id="@+id/commonUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical" >
+
+                <include layout="@layout/shadow_top" />
+
+                <TextView
+                    android:id="@+id/becomeToSeller"
+                    style="@style/myItem"
+                    android:drawableLeft="@drawable/ic_launcher"
+                    android:drawableRight="@drawable/icon_more_15"
+                    android:text="成为商家" />
+
+                <include layout="@layout/shadow_bottom" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/shadow_top" />
+
+            <TextView
+                android:id="@+id/feedback"
+                style="@style/myItem"
+                android:drawableLeft="@drawable/ic_launcher"
+                android:drawableRight="@drawable/icon_more_15"
+                android:text="意见反馈" />
+
+            <include layout="@layout/shadow_bottom" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

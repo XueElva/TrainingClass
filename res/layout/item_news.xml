@@ -91,6 +91,6 @@
                  android:background="@drawable/shape_collect"/>
          </LinearLayout>
     </LinearLayout>
-    <include layout="@layout/shadow_bottom"/>
+    <include layout="@layout/shadow_bottom_wide"/>
 
 </LinearLayout>

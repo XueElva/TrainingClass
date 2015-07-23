@@ -9,5 +9,20 @@
     <string name="xlistview_footer_hint_ready">松开载入更多</string>
     <string name="edit">编辑</string>
     <string name="cancel">取消</string>
+    <string name="inputUserName">请输入用户名</string>
+    <string name="inputPassword">请输入密码</string>
+    <string name="inputEmail">请输入邮箱地址</string>
+    <string name="inputStoreName">请输入店铺名称</string>
+    <string name="confirmPassError">两次输入的密码不一致</string>
+    <string name="emailFormatError">邮箱格式不正确</string>
+    <string name="registerSucceed">注册成功,请尽快到邮箱验证!</string>
+    <string name="registerFail">注册失败:</string>
+    <string name="prompt">提示</string>
+    <string name="loginFirst">请先登录</string>
+    <string name="login">登录</string>
+    <string name="loginSucceed">登录成功!</string>
+    <string name="loginFail">登录失败：</string>
+    <string name="loading">正在加载</string>
+    <string name="logoutSucceed">注销成功</string>
 
 </resources>

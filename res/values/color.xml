@@ -12,6 +12,9 @@
     <color name="pink_collect">#FE6268</color>
     <color name="green_share">#43BE8F</color>
     <color name="black">#000000</color>
+    <color name="line">#D0D0D0</color>
+    <color name="dark_blue">#005572</color>
+    <color name="input_border">#dadada</color>
 
     
     <color name="background_tab_pressed">#6633B5E5</color>
