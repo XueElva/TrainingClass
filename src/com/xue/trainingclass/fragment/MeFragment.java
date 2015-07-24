@@ -26,6 +26,7 @@ public class MeFragment extends Fragment implements OnClickListener {
 	private ImageView mSetting;
 	private ImageView mAvatar;
 	private TextView mUserName;
+	private LinearLayout mIsVip;
 	
 	//通用
 	private TextView mMyCollection,mMyPublishChat,mFeedBack;
@@ -49,6 +50,7 @@ public class MeFragment extends Fragment implements OnClickListener {
 		mSetting = (ImageView) view.findViewById(R.id.setting);
 		mAvatar=(ImageView) view.findViewById(R.id.avatar);
 		mUserName=(TextView) view.findViewById(R.id.userName);
+		mIsVip=(LinearLayout) view.findViewById(R.id.isVIP);
 		mMyCollection=(TextView) view.findViewById(R.id.myCollection);
 		mMyPublishChat=(TextView) view.findViewById(R.id.myPublishChat);
 		mFeedBack=(TextView) view.findViewById(R.id.feedback);
@@ -67,6 +69,13 @@ public class MeFragment extends Fragment implements OnClickListener {
 		}else{
 			mSellerLin.setVisibility(View.GONE);
 		}
+		mUserName.setText(user.getUsername());
+		if(user.getIsVIP()){
+			mIsVip.setSelected(true);
+		}else{
+			mIsVip.setSelected(false);
+		}
+		
 		
         mSetting.setOnClickListener(this);
         mAvatar.setOnClickListener(this);
@@ -96,6 +105,7 @@ public class MeFragment extends Fragment implements OnClickListener {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if((resultCode==Constant.LOGOUT_CODE) && data.getBooleanExtra("logout", false)){
+			//注销返回首页
 			EventBus.getDefault().post(new ChangePageEvent(MainActivity.PAGE_HOME));
 		}
 		super.onActivityResult(requestCode, resultCode, data);

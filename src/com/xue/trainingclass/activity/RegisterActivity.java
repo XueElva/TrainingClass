@@ -7,6 +7,7 @@ import com.xue.trainingclass.tool.DataFormat;
 import com.xue.trainingclass.tool.MD5;
 
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.SaveListener;
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -125,12 +126,6 @@ public class RegisterActivity extends Activity {
 					user.setEmail(mEmail.getText().toString());
 					user.setIsSeller(mIsSeller);
 					
-//					ImageView avatar=new ImageView(RegisterActivity.this);
-////					Bitmap bit=BitmapFactory.decodeResource(getResources(), R.drawable.icon_user2);
-////					Bitmap bit2=Bitmap.createBitmap(bit, 0, 0, 80, 80);
-////					avatar.setImageBitmap(bit2);
-//					avatar.setBackgroundResource(R.drawable.icon_user2);
-//					user.setAvatar(avatar);
 					if (mIsSeller) {
 						user.setStoreName(mStoreName.getText().toString());
 						user.setCity("0,0");

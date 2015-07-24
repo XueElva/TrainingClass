@@ -15,7 +15,8 @@
     <color name="line">#D0D0D0</color>
     <color name="dark_blue">#005572</color>
     <color name="input_border">#dadada</color>
-
+    <color name="vipback">#FFC125</color>
+    <color name="notvipback">#DCDCDC</color>
     
     <color name="background_tab_pressed">#6633B5E5</color>
     <color name="backgroud_tab_normal">#20ffffff</color>

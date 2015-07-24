@@ -58,9 +58,25 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    android:textSize="18sp"
                     android:layout_toRightOf="@id/avatar"
-                    android:text="用户名" />
+                    android:text="用户名"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@+id/isVIP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/userName"
+                    android:background="@drawable/isvip_selector"
+                    android:padding="5dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/icon_vip" />
+                </LinearLayout>
             </RelativeLayout>
 
             <TextView

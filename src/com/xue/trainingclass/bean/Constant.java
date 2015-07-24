@@ -11,16 +11,11 @@ public class Constant {
 	
 	
 	
-//	//用户信息SharedPreference
-//	public static final String USER_INFO_SP="userInfoSharedPreference";
-//	public static final String USERNAME="username";
-//	public static final String PASSWORD="password";
-//	public static final String SEX="sex";
-//	public static final String EMAIL="email";
-//	public static final String ISSELLER="isseller";
-//	public static final String STORENAME="storename";
-//	public static final String CITY="city";
-//	public static final String ISVIP="isVip";
+	//用户信息SharedPreference
+	public static final String USER_INFO_SP="userInfoSharedPreference";
+	public static final String USERNAME="username";
+	public static final String PASSWORD="password";
+
 	
 	
 }
