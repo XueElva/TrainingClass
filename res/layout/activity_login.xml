@@ -27,8 +27,10 @@
             android:background="@color/white"
             android:drawableLeft="@drawable/me"
             android:drawablePadding="20dp"
+            android:gravity="center_vertical"
             android:hint="请输入用户名或邮箱"
-            android:paddingLeft="10dp" />
+            android:paddingLeft="10dp"
+            android:maxLines="1" />
 
         <TextView
             android:layout_width="match_parent"
@@ -45,6 +47,8 @@
             android:drawableLeft="@drawable/lock"
             android:drawablePadding="20dp"
             android:hint="请输入密码"
+            android:maxLines="1"
+            android:gravity="center_vertical"
             android:inputType="textPassword"
             android:paddingLeft="10dp" />
 

@@ -17,16 +17,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dip"
-            android:background="@drawable/back" >
-        </TextView>
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="注 册"
+            android:layout_marginLeft="10dp"
+            android:drawableLeft="@drawable/back"
+            android:gravity="center_vertical"
+            android:text="注册"
             android:textColor="@color/white"
             android:textSize="20sp" />
     </RelativeLayout>
@@ -72,7 +66,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/input_shape"
-                    android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:maxLength="18"
+                    android:maxLines="1"
                     android:paddingLeft="10dp"
                     android:textSize="15sp" />
             </LinearLayout>
@@ -137,6 +132,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/input_shape"
                     android:inputType="textPassword"
+                    android:maxLength="20"
                     android:paddingLeft="10dp"
                     android:textSize="15sp" />
             </LinearLayout>
@@ -163,6 +159,8 @@
                     android:layout_weight="1"
                     android:background="@drawable/input_shape"
                     android:inputType="textPassword"
+                    android:maxLength="20"
+                    android:maxLines="1"
                     android:paddingLeft="10dp"
                     android:textSize="15sp" />
             </LinearLayout>
@@ -191,8 +189,6 @@
                     android:paddingLeft="10dp"
                     android:textSize="15sp" />
             </LinearLayout>
-            
-             
 
             <LinearLayout
                 android:id="@+id/Lin_storeName"
@@ -216,7 +212,6 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/input_shape"
-                    android:inputType="number"
                     android:paddingLeft="10dp"
                     android:textSize="15sp" />
             </LinearLayout>
@@ -224,39 +219,58 @@
             <LinearLayout
                 android:id="@+id/Lin_area"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal" >
+                android:orientation="vertical" >
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:text="所属城市:"
-                    android:textSize="15sp" />
+                    android:layout_height="30dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center"
+                        android:text="所属城市:"
+                        android:textSize="15sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" >
+                    </View>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:paddingLeft="10dp" >
+                    android:orientation="horizontal" 
+                    android:layout_marginTop="10dp">
 
                     <Spinner
                         android:id="@+id/Spin_province"
                         android:layout_width="wrap_content"
-                        android:layout_weight="1"
                         android:layout_height="30dp"
+                        android:layout_weight="1"
                         android:background="@drawable/input_shape" />
-                    
-                     <Spinner
+
+                    <Spinner
                         android:id="@+id/Spin_city"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
-                        android:layout_weight="1"
                         android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/input_shape" />
+
+                    <Spinner
+                        android:id="@+id/Spin_city2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
                         android:background="@drawable/input_shape" />
                 </LinearLayout>
             </LinearLayout>
@@ -275,15 +289,16 @@
                 android:text="注   册"
                 android:textColor="#ffffff"
                 android:textSize="20sp" />
-            
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:textColor="@color/blue_selected"
-                    android:text="*请正确填写邮箱地址，当您忘记密码时，可通过该邮箱重置密码"
-                    android:textSize="13sp" />
+                android:gravity="center"
+                android:text="*请正确填写邮箱地址，当您忘记密码时，可通过该邮箱重置密码"
+                android:textColor="@color/blue_selected"
+                android:textSize="13sp" />
         </LinearLayout>
     </ScrollView>
 

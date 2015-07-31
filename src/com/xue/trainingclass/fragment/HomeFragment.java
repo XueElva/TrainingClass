@@ -106,7 +106,7 @@ public class HomeFragment extends Fragment implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.classify: // 分类
+		case R.id.classify: // 打开分类
 			mListener.onSelectClass();
 
 			break;

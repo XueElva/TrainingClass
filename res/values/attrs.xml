@@ -22,5 +22,6 @@
         <attr name="themeColor" format="color"></attr>
         <attr name="theme_mainbg" format="reference"></attr>
     </declare-styleable>
+    
 
 </resources>

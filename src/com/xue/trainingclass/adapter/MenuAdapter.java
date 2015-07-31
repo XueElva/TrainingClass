@@ -53,7 +53,6 @@ public class MenuAdapter extends BaseAdapter {
 		if (convertView == null) {
 			convertView = View.inflate(context, R.layout.item_menu, null);
 			vh = new ViewHolder();
-			vh.lin = (LinearLayout) convertView.findViewById(R.id.lin);
 			vh.img = (ImageView) convertView.findViewById(R.id.img);
 			vh.text = (TextView) convertView.findViewById(R.id.text);
 			convertView.setTag(vh);
@@ -66,7 +65,7 @@ public class MenuAdapter extends BaseAdapter {
 
 		vh.text.setText((CharSequence) mMenuList.get(position).get("text"));
 		int[] color = (int[]) mMenuList.get(position).get("bgColor");
-		vh.lin.setBackgroundColor(Color.rgb(color[0], color[1], color[2]));
+		
 
 		return convertView;
 	}
@@ -74,7 +73,6 @@ public class MenuAdapter extends BaseAdapter {
 	class ViewHolder {
 		ImageView img;
 		TextView text;
-		LinearLayout lin;
 	}
 
 }

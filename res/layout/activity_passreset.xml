@@ -18,17 +18,13 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dip"
-            android:background="@drawable/back" >
+            android:drawableLeft="@drawable/back"
+            android:text="密码重置" 
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+            android:textSize="20sp" >
         </TextView>
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="密码重置"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
     </RelativeLayout>
 
     <TextView
@@ -45,7 +41,7 @@
         android:layout_marginTop="40dip"
         android:background="@drawable/btn_blue"
         android:gravity="center"
-        android:text="重置密码"
+        android:text="发送重置密码邮件"
         android:textColor="#ffffff"
         android:textSize="20sp" />
 
@@ -55,12 +51,20 @@
         android:layout_height="40dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:hint="请输入注册时填写的邮箱"
         android:layout_centerHorizontal="true"
         android:layout_above="@id/sendEmail"
         android:background="@drawable/input_shape"
         android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:padding="5dp"
         android:textSize="15sp" />
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="您的邮箱地址:"
+        android:layout_above="@id/E_email_resetPass"
+        android:layout_alignLeft="@id/E_email_resetPass"
+        android:textSize="17sp"
+        android:layout_marginBottom="10dp"/>
 
 </RelativeLayout>

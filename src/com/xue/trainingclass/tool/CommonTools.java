@@ -1,7 +1,14 @@
 package com.xue.trainingclass.tool;
 
+import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.listener.FindListener;
+
 import com.xue.trainingclass.activity.LoginActivity;
 import com.xue.trainingclass.activity.R;
+import com.xue.trainingclass.bean.User;
 import com.xue.trainingclass.event.FinishEvent;
 
 import de.greenrobot.event.EventBus;
@@ -10,6 +17,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
@@ -44,7 +53,6 @@ public class CommonTools {
 					}
 				});
 
-	
 		builder.setNegativeButton(
 				context.getResources().getString(R.string.cancel),
 				new DialogInterface.OnClickListener() {
@@ -58,8 +66,7 @@ public class CommonTools {
 		dialog = builder.create();
 		dialog.show();
 	}
-	
-	
+
 	/**
 	 * 得到自定义的progressDialog
 	 * 
@@ -69,7 +76,7 @@ public class CommonTools {
 	 */
 	public static Dialog LoadingDialog;
 
-	public static Dialog createLoadingDialog(Context context, String msg) {
+	public static Dialog createLoadingDialog(Context context) {
 
 		LayoutInflater inflater = LayoutInflater.from(context);
 		View v = inflater.inflate(R.layout.dialog_loading, null);// 得到加载view
@@ -82,7 +89,7 @@ public class CommonTools {
 				context, R.anim.loading_animation);
 		// 使用ImageView显示动画
 		spaceshipImage.startAnimation(hyperspaceJumpAnimation);
-		tipTextView.setText(msg);// 设置加载信息
+		tipTextView.setText(context.getResources().getString(R.string.loading));// 设置加载信息
 
 		Dialog loadingDialog = new Dialog(context, R.style.loading_dialog);// 创建自定义样式dialog
 
@@ -100,4 +107,25 @@ public class CommonTools {
 		} catch (Exception e) {
 		}
 	}
+
+	/**
+	 * 缩小图片到指定大小
+	 * 
+	 * @param bitmap
+	 * @return
+	 */
+	private Bitmap scaleBitmap(Bitmap bitmap, int size) {
+		Bitmap scaledBitmap;
+		float scaledHeightPercent = size / bitmap.getHeight();
+		float scaledWidthPercent = size / bitmap.getWidth();
+		Matrix matrix = new Matrix();
+		matrix.postScale(scaledWidthPercent, scaledHeightPercent);
+
+		scaledBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+				bitmap.getHeight(), matrix, true);
+		return scaledBitmap;
+	}
+	
+	
+	
 }

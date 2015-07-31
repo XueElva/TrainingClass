@@ -98,7 +98,9 @@
         android:background="@drawable/background_tab"
         trainingclass:pstsIndicatorHeight="4dp"
         trainingclass:pstsShouldExpand="true"
-        trainingclass:pstsUnderlineHeight="1dp" >
+        trainingclass:pstsUnderlineHeight="1dp"
+        trainingclass:pstsIndicatorColor="@color/blue_selected"
+        trainingclass:pstsUnderlineColor="@color/blue_selected" >
     </com.xue.trainingclass.view.PagerSlidingTabStrip>
 
     <android.support.v4.view.ViewPager
