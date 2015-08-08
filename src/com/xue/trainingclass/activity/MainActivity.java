@@ -109,7 +109,6 @@ public class MainActivity extends FragmentActivity implements
 				.beginTransaction();
 		ft.replace(R.id.menuLayout, new MenuFragment(this));
 		ft.commit();
-		
 		mHome = (LinearLayout) findViewById(R.id.ll_home);
 		mChat = (LinearLayout) findViewById(R.id.ll_chat);
 		mPublish = (LinearLayout) findViewById(R.id.ll_publish);
@@ -207,12 +206,14 @@ public class MainActivity extends FragmentActivity implements
 	// 打开分类
 	@Override
 	public void onSelectClass() {
+		
 		mDrawerLayout.openDrawer(mMenuLayout);
 
 	}
 
+	//选中分类
 	@Override
-	public void onClassSelected(String type) {
+	public void onClassSelected(String classid) {
 		mDrawerLayout.closeDrawers();
 	}
 
