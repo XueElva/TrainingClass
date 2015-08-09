@@ -33,5 +33,7 @@
     <string name="emailHaveNotVerified">您的邮箱还未验证，请先去邮箱进行验证</string>
     <string name="confirm">确定</string>
     <string name="usernameOrPassIncorrect">用户名或密码错误</string>
+    <string name="chooseParentClass">请选择大分类</string>
+    <string name="chooseChildClass">请选择小分类</string>
 
 </resources>

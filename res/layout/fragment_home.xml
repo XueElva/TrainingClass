@@ -74,6 +74,7 @@
                 android:drawableLeft="@drawable/icon_find"
                 android:gravity="center"
                 android:paddingLeft="10dp"
+                android:paddingRight="0dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 android:textSize="15sp" />

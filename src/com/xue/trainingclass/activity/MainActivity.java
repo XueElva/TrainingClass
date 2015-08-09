@@ -1,44 +1,30 @@
 package com.xue.trainingclass.activity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.LinearGradient;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
+import android.view.Window;
 import android.widget.FrameLayout;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
 
-import com.xue.trainingclass.adapter.MenuAdapter;
 import com.xue.trainingclass.bean.User;
 import com.xue.trainingclass.event.ChangePageEvent;
 import com.xue.trainingclass.event.FinishEvent;
 import com.xue.trainingclass.fragment.ChatFragment;
 import com.xue.trainingclass.fragment.HomeFragment;
+import com.xue.trainingclass.fragment.HomeFragment.OnSelectClassListener;
 import com.xue.trainingclass.fragment.MeFragment;
 import com.xue.trainingclass.fragment.MenuFragment;
-import com.xue.trainingclass.fragment.MessageFragment;
-import com.xue.trainingclass.fragment.HomeFragment.OnSelectClassListener;
 import com.xue.trainingclass.fragment.MenuFragment.OnClassSelectedListener;
+import com.xue.trainingclass.fragment.MessageFragment;
 import com.xue.trainingclass.tool.CommonTools;
 
 import de.greenrobot.event.EventBus;
@@ -174,7 +160,7 @@ public class MainActivity extends FragmentActivity implements
 				break;
 			case R.id.ll_publish:
 				Intent intent = new Intent(MainActivity.this,
-						PublishActivity.class);
+						DialogChooseClass.class);
 				startActivity(intent);
 				break;
 

@@ -94,6 +94,13 @@
             android:theme="@android:style/Theme.Dialog"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.xue.trainingclass.activity.DialogChooseClass"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Dialog"
+            android:screenOrientation="portrait" >
+        </activity>
          <activity
             android:name="com.xue.trainingclass.activity.RoleChoiceActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
