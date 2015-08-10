@@ -116,7 +116,7 @@
                 style="@style/myItem"
                 android:drawableLeft="@drawable/ic_launcher"
                 android:drawableRight="@drawable/icon_more_15"
-                android:text="我的言论" />
+                android:text="我的讨论" />
             
             <include layout="@layout/shadow_top" />
 
