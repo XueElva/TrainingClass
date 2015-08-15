@@ -46,6 +46,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:drawableLeft="@drawable/necessary"
                     android:gravity="center"
                     android:text="标题:" />
 
@@ -92,6 +93,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:drawableLeft="@drawable/necessary"
                     android:text="开课时间:" />
 
                 <EditText
@@ -114,6 +116,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:drawableLeft="@drawable/necessary"
                     android:text="课程周期:" />
 
                 <EditText
@@ -233,6 +236,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:numColumns="3"
+                android:verticalSpacing="1dp"
+                android:horizontalSpacing="1dp"
                 android:scrollbars="@null" >
             </GridView>
 
@@ -247,10 +252,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:drawableLeft="@drawable/necessary"
                     android:text="详细地址:" />
 
                 <EditText
-                    android:id="@+id/adress"
+                    android:id="@+id/address"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
@@ -262,6 +268,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:drawableLeft="@drawable/necessary"
                 android:text="所属城市:" />
 
             <LinearLayout
@@ -302,12 +309,19 @@
                 android:orientation="horizontal" >
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/necessary"
+                    android:text="联系人:" />
+
+                <TextView
                     android:id="@+id/addConnectPerson"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/input_shape"
                     android:drawableLeft="@drawable/icon_add_green"
                     android:padding="3dp"
+                    android:layout_marginLeft="10dp"
                     android:text="添加联系人" />
 
                 <TextView

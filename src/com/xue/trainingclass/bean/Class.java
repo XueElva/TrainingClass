@@ -6,6 +6,7 @@ import java.io.Serializable;
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.datatype.BmobFile;
 
+//培训班类别
 public class Class extends BmobObject implements Serializable{
 private String classname; //类名
 private BmobFile icon; //图标

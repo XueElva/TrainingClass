@@ -31,6 +31,7 @@ public class DialogChooseClass extends Activity {
 	List<Class> mParentList = new ArrayList<Class>();
 	List<Class> mChildList = new ArrayList<Class>();
 	private boolean isParentClass=true;
+	private String mParentName;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -69,13 +70,16 @@ public class DialogChooseClass extends Activity {
 					int position, long id) {
 				// TODO Auto-generated method stub
 				if(isParentClass ){
+					mParentName=mParentList.get(position).getClassname();
 					if( mParentList.get(position).getHaschild()){
 						//选择子分类
 						queryChildClassed(mParentList.get(position).getClassid());
 						isParentClass=false;
 						mBack.setVisibility(View.VISIBLE);
 					}else {
+						//没有子分类
 						Intent intent=new Intent(DialogChooseClass.this,PublishActivity.class);
+						intent.putExtra("className", mParentName);
 						intent.putExtra("classId", mParentList.get(position).getClassid());
 						startActivity(intent);
 						finish();
@@ -83,6 +87,7 @@ public class DialogChooseClass extends Activity {
 					
 				}else{
 					Intent intent=new Intent(DialogChooseClass.this,PublishActivity.class);
+					intent.putExtra("className", mParentName+"->"+mChildList.get(position).getClassname());
 					intent.putExtra("classId", mChildList.get(position).getClassid());
 					startActivity(intent);
 					finish();
