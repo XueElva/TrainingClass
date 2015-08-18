@@ -1,23 +1,5 @@
 package com.xue.trainingclass.fragment;
 
-import java.io.File;
-
-import cn.bmob.v3.BmobUser;
-
-import com.bmob.BmobProFile;
-import com.bmob.btp.callback.DownloadListener;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.xue.trainingclass.activity.CompleteInfoActivity;
-import com.xue.trainingclass.activity.MainActivity;
-import com.xue.trainingclass.activity.R;
-import com.xue.trainingclass.activity.SettingActivity;
-import com.xue.trainingclass.activity.UserInfoActivity;
-import com.xue.trainingclass.application.MyApplication;
-import com.xue.trainingclass.bean.Constant;
-import com.xue.trainingclass.bean.User;
-import com.xue.trainingclass.event.ChangePageEvent;
-
-import de.greenrobot.event.EventBus;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -32,6 +14,20 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import cn.bmob.v3.BmobUser;
+
+import com.bmob.BmobProFile;
+import com.bmob.btp.callback.DownloadListener;
+import com.xue.trainingclass.activity.CompleteInfoActivity;
+import com.xue.trainingclass.activity.MainActivity;
+import com.xue.trainingclass.activity.R;
+import com.xue.trainingclass.activity.SettingActivity;
+import com.xue.trainingclass.activity.UserInfoActivity;
+import com.xue.trainingclass.bean.Constant;
+import com.xue.trainingclass.bean.User;
+import com.xue.trainingclass.event.ChangePageEvent;
+
+import de.greenrobot.event.EventBus;
 
 public class MeFragment extends Fragment implements OnClickListener {
 

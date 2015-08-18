@@ -1,10 +1,5 @@
 package com.xue.trainingclass.activity;
 
-import com.xue.trainingclass.bean.Constant;
-import com.xue.trainingclass.event.ChangePageEvent;
-
-import cn.bmob.v3.BmobUser;
-import de.greenrobot.event.EventBus;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
@@ -13,6 +8,9 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import cn.bmob.v3.BmobUser;
+
+import com.xue.trainingclass.bean.Constant;
 
 public class SettingActivity extends Activity implements OnClickListener{
 

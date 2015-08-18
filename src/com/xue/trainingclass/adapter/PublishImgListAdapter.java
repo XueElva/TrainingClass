@@ -2,14 +2,14 @@ package com.xue.trainingclass.adapter;
 
 import java.util.ArrayList;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.xue.trainingclass.activity.R;
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.xue.trainingclass.activity.R;
 
 public class PublishImgListAdapter extends BaseAdapter {
 	ArrayList<String> mImgList;

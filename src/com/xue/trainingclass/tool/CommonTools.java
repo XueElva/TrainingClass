@@ -1,17 +1,8 @@
 package com.xue.trainingclass.tool;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.listener.FindListener;
-
-import com.xue.trainingclass.activity.LoginActivity;
-import com.xue.trainingclass.activity.R;
-import com.xue.trainingclass.bean.User;
-import com.xue.trainingclass.event.FinishEvent;
-
-import de.greenrobot.event.EventBus;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -26,6 +17,12 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.xue.trainingclass.activity.LoginActivity;
+import com.xue.trainingclass.activity.R;
+import com.xue.trainingclass.event.FinishEvent;
+
+import de.greenrobot.event.EventBus;
 
 public class CommonTools {
 	/**
@@ -125,7 +122,46 @@ public class CommonTools {
 				bitmap.getHeight(), matrix, true);
 		return scaledBitmap;
 	}
-	
-	
-	
+
+	/**
+	 * 生成图片名称的json [{"imgName":""},{"imgName":""},{"imgName":""}]
+	 * 
+	 * @param imgList
+	 * @return
+	 */
+	public static  String getImgListJSON(ArrayList<String> imgList) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("[");
+		for (int i = 0; i < imgList.size(); i++) {
+			sb.append("{\"imgName\":\"" + imgList.get(i) + "\"}");
+			if (i != (imgList.size() - 1)) {
+				sb.append(",");
+			}
+		}
+		sb.append("]");
+
+		return sb.toString();
+	}
+
+	/**
+	 * 得到联系人列表 JSON串
+	 * [{"name":"","phone":""},{"name":"","phone":""},{"name":"","phone":""}]
+	 * 
+	 * @return
+	 */
+	public static  String getConnectInfoJSON(
+			ArrayList<HashMap<String, String>> connectInfoList) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("[");
+
+		for (int i = 0; i < connectInfoList.size(); i++) {
+			sb.append("{\"name\":\"" + connectInfoList.get(i).get("name")
+					+ "\",\"phone\":\"" + connectInfoList.get(i) + "\"}");
+			if (i != (connectInfoList.size() - 1)) {
+				sb.append(",");
+			}
+		}
+		sb.append("]");
+		return sb.toString();
+	}
 }

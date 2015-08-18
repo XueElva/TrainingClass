@@ -3,13 +3,6 @@ package com.xue.trainingclass.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.listener.FindListener;
-
-import com.xue.trainingclass.adapter.ChildMenuAdapter;
-import com.xue.trainingclass.adapter.MenuAdapter;
-import com.xue.trainingclass.bean.Class;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +14,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.FindListener;
+
+import com.xue.trainingclass.adapter.ChildMenuAdapter;
+import com.xue.trainingclass.bean.Class;
 
 public class DialogChooseClass extends Activity {
 

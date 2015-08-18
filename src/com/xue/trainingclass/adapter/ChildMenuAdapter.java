@@ -2,14 +2,14 @@ package com.xue.trainingclass.adapter;
 
 import java.util.List;
 
-import com.xue.trainingclass.activity.R;
-import com.xue.trainingclass.bean.Class;
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.xue.trainingclass.activity.R;
+import com.xue.trainingclass.bean.Class;
 
 public class ChildMenuAdapter extends BaseAdapter {
 	List<Class> mChildList;

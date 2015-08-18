@@ -1,28 +1,6 @@
 package com.xue.trainingclass.activity;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.URI;
-
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.datatype.BmobFile;
-import cn.bmob.v3.listener.SaveListener;
-import cn.bmob.v3.listener.UpdateListener;
-
-import com.bmob.BmobProFile;
-import com.bmob.btp.callback.DeleteFileListener;
-import com.bmob.btp.callback.DownloadListener;
-import com.bmob.btp.callback.ThumbnailListener;
-import com.bmob.btp.callback.UploadListener;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
-import com.xue.trainingclass.bean.Constant;
-import com.xue.trainingclass.bean.User;
-import com.xue.trainingclass.tool.CommonTools;
-import com.xue.trainingclass.tool.DataFormat;
-import com.xue.trainingclass.tool.FileSizeUtil;
-import com.xue.trainingclass.tool.MD5;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -34,20 +12,33 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.RadioGroup.OnCheckedChangeListener;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobFile;
+import cn.bmob.v3.listener.UpdateListener;
+
+import com.bmob.BmobProFile;
+import com.bmob.btp.callback.DeleteFileListener;
+import com.bmob.btp.callback.DownloadListener;
+import com.bmob.btp.callback.ThumbnailListener;
+import com.bmob.btp.callback.UploadListener;
+import com.xue.trainingclass.bean.Constant;
+import com.xue.trainingclass.bean.User;
+import com.xue.trainingclass.tool.CommonTools;
+import com.xue.trainingclass.tool.DataFormat;
+import com.xue.trainingclass.tool.FileSizeUtil;
 
 public class UserInfoActivity extends Activity implements OnClickListener {
 

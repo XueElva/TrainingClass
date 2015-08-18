@@ -2,8 +2,6 @@ package com.xue.trainingclass.bean;
 
 import java.util.Date;
 
-import com.bmob.BmobProFile;
-
 import cn.bmob.v3.BmobUser;
 
 public class User extends BmobUser{

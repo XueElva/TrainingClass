@@ -1,33 +1,25 @@
 package com.xue.trainingclass.fragment;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 
 import com.xue.trainingclass.activity.DialogChildMenu;
 import com.xue.trainingclass.activity.R;
-import com.xue.trainingclass.adapter.ChildMenuAdapter;
 import com.xue.trainingclass.adapter.MenuAdapter;
 import com.xue.trainingclass.bean.Class;
 import com.xue.trainingclass.bean.Constant;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.GridView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.LinearLayout.LayoutParams;
-import android.widget.PopupWindow;
 
 public class MenuFragment extends Fragment {
 	GridView mMenu;

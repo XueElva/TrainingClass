@@ -1,7 +1,5 @@
 package com.xue.trainingclass.fragment;
 
-import com.xue.trainingclass.activity.R;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +8,8 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.xue.trainingclass.activity.R;
 
 public class MessageFragment extends Fragment {
 	private TextView mEdit;

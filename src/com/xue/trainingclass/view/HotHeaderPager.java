@@ -5,14 +5,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.viewpagerindicator.CirclePageIndicator;
-import com.xue.trainingclass.activity.R;
-import com.xue.trainingclass.adapter.HeadPageAdapter;
-import com.xue.trainingclass.inter.IfoucePage;
-import com.xue.trainingclass.view.FouceViewPager.OnSingleTouchListener;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
@@ -24,6 +16,14 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.viewpagerindicator.CirclePageIndicator;
+import com.xue.trainingclass.activity.R;
+import com.xue.trainingclass.adapter.HeadPageAdapter;
+import com.xue.trainingclass.inter.IfoucePage;
+import com.xue.trainingclass.view.FouceViewPager.OnSingleTouchListener;
 
 public class HotHeaderPager<T> extends LinearLayout {
 	List<T> contentList;

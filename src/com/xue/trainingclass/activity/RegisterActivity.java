@@ -1,34 +1,29 @@
 package com.xue.trainingclass.activity;
 
-import com.xue.trainingclass.bean.Constant;
-import com.xue.trainingclass.bean.User;
-import com.xue.trainingclass.event.RegisterSucceedEvent;
-import com.xue.trainingclass.tool.CommonTools;
-import com.xue.trainingclass.tool.DataFormat;
-import com.xue.trainingclass.tool.MD5;
-
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.datatype.BmobFile;
-import cn.bmob.v3.listener.SaveListener;
-import de.greenrobot.event.EventBus;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import cn.bmob.v3.listener.SaveListener;
+
+import com.xue.trainingclass.bean.Constant;
+import com.xue.trainingclass.bean.User;
+import com.xue.trainingclass.event.RegisterSucceedEvent;
+import com.xue.trainingclass.tool.CommonTools;
+import com.xue.trainingclass.tool.DataFormat;
+
+import de.greenrobot.event.EventBus;
 
 public class RegisterActivity extends Activity {
 

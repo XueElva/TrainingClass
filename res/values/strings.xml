@@ -36,5 +36,22 @@
     <string name="chooseParentClass">请选择大分类</string>
     <string name="chooseChildClass">请选择小分类</string>
     <string name="imgIsFull">图片数量已满，请先删除已选图片再添加</string>
+    <string name="deleteImg">删除该图片?</string>
+    <string name="inputName">请输入姓名</string>
+    <string name="inputPhone">请输入手机号</string>
+    <string name="deleteConnectPerson">删除联系人?</string>
+    <string name="inputTitle">请输入标题</string>
+    <string name="inputClassBeginTime">请输入开课时间</string>
+    <string name="inputCycle">请输入课程周期</string>
+    <string name="inputAddress">请输入详细地址</string>
+    <string name="selectCity">请选择所属城市</string>
+    <string name="addConnectPerson">请添加联系人</string>
+    <string name="publishFail">发布失败</string>
+    <string name="publishSucceed">发布成功</string>
+    <string name="has_chose">已选择</string>
+    <string name="picture_unit">张</string>
+    <string name="please_choose_pic">选择图片</string>
+    <string name="arrive_limit_count">已达到最大选择数</string>
+    <string name="add_photo">添加图片</string>
 
 </resources>

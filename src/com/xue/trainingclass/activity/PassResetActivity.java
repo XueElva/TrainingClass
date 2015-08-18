@@ -2,19 +2,8 @@ package com.xue.trainingclass.activity;
 
 import java.util.List;
 
-import com.xue.trainingclass.bean.User;
-import com.xue.trainingclass.tool.CommonTools;
-import com.xue.trainingclass.tool.DataFormat;
-
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.listener.EmailVerifyListener;
-import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.ResetPasswordByEmailListener;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,6 +12,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.listener.EmailVerifyListener;
+import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.ResetPasswordByEmailListener;
+
+import com.xue.trainingclass.bean.User;
+import com.xue.trainingclass.tool.CommonTools;
+import com.xue.trainingclass.tool.DataFormat;
 
 public class PassResetActivity extends Activity {
 

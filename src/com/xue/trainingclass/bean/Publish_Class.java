@@ -18,7 +18,7 @@ private String price; //价格
 private String imgList; //图片名称列，json，最多三张[{"imgName":""},{"imgName":""},{"imgName":""}]
 private String address; //地址
 private String cityId; //区域id
-private String connectInfo; //联系人信息，json，最多三张[{"name":"","phone":""},{"name":"","phone":""},{"name":"","phone":""}]
+private String connectInfo; //联系人信息，json，最多三个[{"name":"","phone":""},{"name":"","phone":""},{"name":"","phone":""}]
 private String storeBriefIntroduction; //企业简介
 private String classDescription; //课程简介
 public String getAuthorId() {

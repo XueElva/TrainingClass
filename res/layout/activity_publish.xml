@@ -45,9 +45,8 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="1.3"
                     android:drawableLeft="@drawable/necessary"
-                    android:gravity="center"
                     android:text="标题:" />
 
                 <EditText
@@ -56,7 +55,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
                     android:background="@drawable/input_shape"
-                    android:padding="3dp" />
+                    android:padding="3dp"
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -69,8 +69,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
+                    android:layout_weight="1.3"
                     android:text="对象:" />
 
                 <EditText
@@ -79,7 +78,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
                     android:background="@drawable/input_shape"
-                    android:padding="3dp" />
+                    android:padding="3dp"
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -92,7 +92,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="1.3"
                     android:drawableLeft="@drawable/necessary"
                     android:text="开课时间:" />
 
@@ -102,7 +102,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
                     android:background="@drawable/input_shape"
-                    android:padding="3dp" />
+                    android:padding="3dp"
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -115,7 +116,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="1.3"
                     android:drawableLeft="@drawable/necessary"
                     android:text="课程周期:" />
 
@@ -125,7 +126,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
                     android:background="@drawable/input_shape"
-                    android:padding="3dp" />
+                    android:padding="3dp"
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -138,7 +140,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="1.3" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -151,14 +153,16 @@
                         android:id="@+id/isSummerClass"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="暑期班" />
+                        android:text="暑期班"
+                        android:textSize="13sp" />
 
                     <CheckBox
                         android:id="@+id/isWeekendClass"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="周末班" />
+                        android:text="周末班"
+                        android:textSize="13sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -172,7 +176,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="1.3"
                     android:text="价格:" />
 
                 <EditText
@@ -181,7 +185,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
                     android:background="@drawable/input_shape"
-                    android:padding="3dp" />
+                    android:padding="3dp"
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <TextView
@@ -197,7 +202,8 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/input_shape"
                 android:minHeight="60dp"
-                android:padding="3dp" />
+                android:padding="3dp"
+                android:textSize="15sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -235,10 +241,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:numColumns="3"
-                android:verticalSpacing="1dp"
                 android:horizontalSpacing="1dp"
-                android:scrollbars="@null" >
+                android:numColumns="3"
+                android:scrollbars="@null"
+                android:verticalSpacing="1dp" >
             </GridView>
 
             <LinearLayout
@@ -251,7 +257,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="1.3"
                     android:drawableLeft="@drawable/necessary"
                     android:text="详细地址:" />
 
@@ -261,7 +267,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
                     android:background="@drawable/input_shape"
-                    android:padding="3dp" />
+                    android:padding="3dp"
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <TextView
@@ -318,10 +325,10 @@
                     android:id="@+id/addConnectPerson"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:background="@drawable/input_shape"
                     android:drawableLeft="@drawable/icon_add_green"
                     android:padding="3dp"
-                    android:layout_marginLeft="10dp"
                     android:text="添加联系人" />
 
                 <TextView
@@ -336,6 +343,7 @@
                 android:id="@+id/connectPersonLV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:scrollbars="@null" >
             </ListView>
 
@@ -351,7 +359,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/input_shape"
-                android:padding="3dp" />
+                android:minHeight="60dp"
+                android:padding="3dp"
+                android:textSize="15sp" />
 
             <Button
                 android:id="@+id/publish"

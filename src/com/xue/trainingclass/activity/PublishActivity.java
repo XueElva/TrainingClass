@@ -1,22 +1,20 @@
 package com.xue.trainingclass.activity;
 
-import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-import android.R.integer;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ListView;
@@ -25,14 +23,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.ns.mutiphotochoser.constant.Constant;
-import com.xue.trainingclass.adapter.ChildMenuAdapter;
+import com.xue.trainingclass.adapter.PublishConnectPersonListAdapter;
 import com.xue.trainingclass.adapter.PublishImgListAdapter;
 import com.xue.trainingclass.bean.Area;
-import com.xue.trainingclass.bean.Class;
+import com.xue.trainingclass.bean.Constant;
 import com.xue.trainingclass.bean.Publish_Class;
+import com.xue.trainingclass.tool.CommonTools;
+import com.xue.trainingclass.view.CommonDialog;
+import com.xue.trainingclass.view.CommonDialog.onComDialogBtnClick;
+import com.xue.trainingclass.view.GalleryActivity;
 
 public class PublishActivity extends Activity {
 
@@ -43,10 +44,13 @@ public class PublishActivity extends Activity {
 	private CheckBox mSummerClass, mWeekendClass;
 	private TextView mBtnAddImg, mBtnAddConnectPerson;
 	private GridView mImgGridView;
-	private ArrayList<String> mImgList;
+	private ArrayList<String> mImgList = new ArrayList<String>();
 	private PublishImgListAdapter mImgListAdapter;
-	
+
 	private ListView mPersonLV;
+	private PublishConnectPersonListAdapter mPersonListAdapter;
+	private ArrayList<HashMap<String, String>> mConnectInfoList = new ArrayList<HashMap<String, String>>();
+
 	private Spinner mProvince, mCity1, mCity2;
 	private ArrayAdapter<String> mProvinceAdapter, mCity1Adapter,
 			mCity2Adapter;
@@ -91,9 +95,39 @@ public class PublishActivity extends Activity {
 		mPersonLV = (ListView) findViewById(R.id.connectPersonLV);
 		mPublish = (Button) findViewById(R.id.publish);
 
-		mImgListAdapter=new PublishImgListAdapter(mImgList, PublishActivity.this);
+		mPersonListAdapter = new PublishConnectPersonListAdapter(
+				mConnectInfoList, PublishActivity.this);
+		mPersonLV.setAdapter(mPersonListAdapter);
+
+		mImgListAdapter = new PublishImgListAdapter(mImgList,
+				PublishActivity.this);
 		mImgGridView.setAdapter(mImgListAdapter);
-		
+		mImgGridView.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view,
+					final int position, long id) {
+				new CommonDialog(PublishActivity.this).Init(getResources()
+						.getString(R.string.deleteImg),
+						new onComDialogBtnClick() {
+
+							@Override
+							public void onCancelClick() {
+								// TODO Auto-generated method stub
+
+							}
+
+							@Override
+							public void onConfirmClick() {
+								// TODO Auto-generated method stub
+								mImgList.remove(position);
+								mImgListAdapter.notifyDataSetChanged();
+							}
+
+						});
+				return false;
+			}
+		});
 		mPublish.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -153,21 +187,36 @@ public class PublishActivity extends Activity {
 			}
 		});
 
+		// 添加图片
 		mBtnAddImg.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if(mImgList.size()==3){
-					Toast.makeText(PublishActivity.this, getResources().getString(R.string.imgIsFull), 1).show();
-				}else{
-					Intent intent = new Intent(
-							"com.ns.mutiphotochoser.sample.action.CHOSE_PHOTOS");
+				if (mImgList.size() == 3) {
+					Toast.makeText(PublishActivity.this,
+							getResources().getString(R.string.imgIsFull), 1)
+							.show();
+				} else {                                            
+					Intent intent = new Intent(PublishActivity.this,GalleryActivity.class);
 					// 最多选取图片数
-					intent.putExtra(Constant.EXTRA_PHOTO_LIMIT, 3-mImgList.size());
+					intent.putExtra(Constant.EXTRA_PHOTO_LIMIT,
+							3 - mImgList.size());
 					startActivityForResult(intent, REQUEST_PICK_PHOTO);
 				}
-				
+
+			}
+		});
+
+		// 添加联系人
+		mBtnAddConnectPerson.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(PublishActivity.this,
+						AddConnectPersonDialog.class);
+				startActivityForResult(intent, 5);
 			}
 		});
 
@@ -185,18 +234,83 @@ public class PublishActivity extends Activity {
 		String classDescription = mClassDescription.getText().toString();
 		String address = mAddr.getText().toString();
 		String storeIntroduction = mStoreIntroduction.getText().toString();
-		
+		if (title.equals("")) {
+			Toast.makeText(PublishActivity.this,
+					getResources().getString(R.string.inputTitle), 1).show();
+		} else if (beginTime.equals("")) {
+			Toast.makeText(PublishActivity.this,
+					getResources().getString(R.string.inputClassBeginTime), 1)
+					.show();
+		} else if (cycle.equals("")) {
+			Toast.makeText(PublishActivity.this,
+					getResources().getString(R.string.inputCycle), 1).show();
+		} else if (address.equals("")) {
+			Toast.makeText(PublishActivity.this,
+					getResources().getString(R.string.inputAddress), 1).show();
+		} else if (mClassInfo.getCityId() == null) {
+			Toast.makeText(PublishActivity.this,
+					getResources().getString(R.string.selectCity), 1).show();
+		} else if (mConnectInfoList.size() == 0) {
+			Toast.makeText(PublishActivity.this,
+					getResources().getString(R.string.addConnectPerson), 1)
+					.show();
+		} else {
+			mClassInfo.setTitle(title);
+			mClassInfo.setToward(toward);
+			mClassInfo.setBeginTime(beginTime);
+			mClassInfo.setCycle(cycle);
+			mClassInfo.setIsSummerClass(mSummerClass.isChecked());
+			mClassInfo.setIsWeekendClass(mWeekendClass.isChecked());
+			mClassInfo.setPrice(price);
+			mClassInfo.setClassDescription(classDescription);
+			mClassInfo.setImgList(CommonTools.getImgListJSON(mImgList));
+			mClassInfo.setAddress(address);
+			mClassInfo.setConnectInfo(CommonTools
+					.getConnectInfoJSON(mConnectInfoList));
 
+			CommonTools.createLoadingDialog(PublishActivity.this).show();
+
+			mClassInfo.save(PublishActivity.this, new SaveListener() {
+
+				@Override
+				public void onSuccess() {
+					CommonTools.cancleDialog();
+					Toast.makeText(PublishActivity.this,
+							getResources().getString(R.string.publishSucceed),
+							1).show();
+
+					finish();
+				}
+
+				@Override
+				public void onFailure(int arg0, String arg1) {
+					CommonTools.cancleDialog();
+					Toast.makeText(PublishActivity.this,
+							getResources().getString(R.string.publishFail), 1)
+							.show();
+				}
+			});
+
+		}
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == REQUEST_PICK_PHOTO) {
-			ArrayList<String> imgs = data.getStringArrayListExtra(Constant.EXTRA_PHOTO_PATHS);
+			ArrayList<String> imgs = data
+					.getStringArrayListExtra(Constant.EXTRA_PHOTO_PATHS);
 			if (imgs != null && imgs.size() > 0) {
-				mImgList=imgs;
+				mImgList.addAll(imgs);
 				mImgListAdapter.notifyDataSetChanged();
 			}
+		} else if (resultCode == com.xue.trainingclass.bean.Constant.ADD_CONNECTPERSON
+				&& data != null) {
+			HashMap<String, String> person = new HashMap<String, String>();
+			person.put("name", data.getStringExtra("name"));
+			person.put("phone", data.getStringExtra("phone"));
+			mConnectInfoList.add(person);
+
+			mPersonListAdapter.notifyDataSetChanged();
 		}
 		super.onActivityResult(requestCode, resultCode, data);
 	}

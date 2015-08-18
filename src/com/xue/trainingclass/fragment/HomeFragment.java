@@ -2,15 +2,9 @@ package com.xue.trainingclass.fragment;
 
 import java.util.ArrayList;
 
-import com.xue.trainingclass.activity.R;
-import com.xue.trainingclass.adapter.HomePageAdapter;
-import com.xue.trainingclass.view.PagerSlidingTabStrip;
-import com.xue.trainingclass.view.PagerSlidingTabStrip.OnPageSelectedListener;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,6 +13,11 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.xue.trainingclass.activity.R;
+import com.xue.trainingclass.adapter.HomePageAdapter;
+import com.xue.trainingclass.view.PagerSlidingTabStrip;
+import com.xue.trainingclass.view.PagerSlidingTabStrip.OnPageSelectedListener;
 
 public class HomeFragment extends Fragment implements OnClickListener {
 

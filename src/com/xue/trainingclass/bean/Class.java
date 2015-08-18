@@ -1,6 +1,5 @@
 package com.xue.trainingclass.bean;
 
-import java.io.File;
 import java.io.Serializable;
 
 import cn.bmob.v3.BmobObject;

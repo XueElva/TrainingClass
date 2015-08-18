@@ -1,12 +1,12 @@
 package com.xue.trainingclass.fragment;
 
-import com.xue.trainingclass.activity.R;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.xue.trainingclass.activity.R;
 //风采展示
 public class HomeShowFragment extends Fragment {
 	@Override

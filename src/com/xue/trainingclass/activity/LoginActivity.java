@@ -1,5 +1,18 @@
 package com.xue.trainingclass.activity;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.LogInListener;
@@ -7,26 +20,11 @@ import cn.bmob.v3.listener.SaveListener;
 
 import com.xue.trainingclass.bean.Constant;
 import com.xue.trainingclass.bean.User;
-import com.xue.trainingclass.event.FinishEvent;
 import com.xue.trainingclass.event.RegisterSucceedEvent;
 import com.xue.trainingclass.tool.CommonTools;
 import com.xue.trainingclass.tool.DataFormat;
-import com.xue.trainingclass.tool.MD5;
 
 import de.greenrobot.event.EventBus;
-import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnFocusChangeListener;
-import android.view.Window;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class LoginActivity extends Activity implements OnClickListener {
 

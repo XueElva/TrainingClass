@@ -1,11 +1,5 @@
 package com.xue.trainingclass.activity;
 
-import com.xue.trainingclass.bean.Constant;
-import com.xue.trainingclass.bean.User;
-import com.xue.trainingclass.tool.CommonTools;
-
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.listener.UpdateListener;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +11,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.listener.UpdateListener;
+
+import com.xue.trainingclass.bean.Constant;
+import com.xue.trainingclass.bean.User;
+import com.xue.trainingclass.tool.CommonTools;
 
 public class CompleteInfoActivity extends Activity {
 	private TextView mBack;
