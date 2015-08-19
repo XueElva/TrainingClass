@@ -156,7 +156,7 @@ public class CommonTools {
 
 		for (int i = 0; i < connectInfoList.size(); i++) {
 			sb.append("{\"name\":\"" + connectInfoList.get(i).get("name")
-					+ "\",\"phone\":\"" + connectInfoList.get(i) + "\"}");
+					+ "\",\"phone\":\"" + connectInfoList.get(i).get("phone") + "\"}");
 			if (i != (connectInfoList.size() - 1)) {
 				sb.append(",");
 			}

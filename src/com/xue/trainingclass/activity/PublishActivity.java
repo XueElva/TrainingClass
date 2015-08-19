@@ -12,11 +12,13 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -25,6 +27,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 
+import com.bmob.BmobProFile;
 import com.xue.trainingclass.adapter.PublishConnectPersonListAdapter;
 import com.xue.trainingclass.adapter.PublishImgListAdapter;
 import com.xue.trainingclass.bean.Area;
@@ -57,7 +60,7 @@ public class PublishActivity extends Activity {
 	private String[] mProvinces, mCitys1, mCitys2; // 用于显示
 	private ArrayList<Area> mProvinceList, mCity1List, mCity2List;
 	private Button mPublish;
-
+	LinearLayout.LayoutParams  listviewLP;
 	// 最终要保存的数据
 	private Publish_Class mClassInfo;
 
@@ -197,8 +200,9 @@ public class PublishActivity extends Activity {
 					Toast.makeText(PublishActivity.this,
 							getResources().getString(R.string.imgIsFull), 1)
 							.show();
-				} else {                                            
-					Intent intent = new Intent(PublishActivity.this,GalleryActivity.class);
+				} else {
+					Intent intent = new Intent(PublishActivity.this,
+							GalleryActivity.class);
 					// 最多选取图片数
 					intent.putExtra(Constant.EXTRA_PHOTO_LIMIT,
 							3 - mImgList.size());
@@ -269,7 +273,7 @@ public class PublishActivity extends Activity {
 					.getConnectInfoJSON(mConnectInfoList));
 
 			CommonTools.createLoadingDialog(PublishActivity.this).show();
-
+//BmobProFile.getInstance(PublishActivity.this).upload(filePath, uploadListener)
 			mClassInfo.save(PublishActivity.this, new SaveListener() {
 
 				@Override
@@ -311,6 +315,8 @@ public class PublishActivity extends Activity {
 			mConnectInfoList.add(person);
 
 			mPersonListAdapter.notifyDataSetChanged();
+			listviewLP =new LayoutParams(LayoutParams.FILL_PARENT, mConnectInfoList.size()*100);
+			mPersonLV.setLayoutParams(listviewLP);
 		}
 		super.onActivityResult(requestCode, resultCode, data);
 	}
@@ -338,32 +344,41 @@ public class PublishActivity extends Activity {
 				case 1: // 省
 					mProvinceList = (ArrayList<Area>) object;
 					mProvinces = getNameList(mProvinceList);
-					if (mProvinceAdapter == null) {
+//					if (mProvinceAdapter == null) {
 						mProvinceAdapter = new ArrayAdapter<String>(
 								PublishActivity.this, R.layout.item_spinner,
 								mProvinces);
-					}
-					mProvinceAdapter.notifyDataSetChanged();
+						mProvince.setAdapter(mProvinceAdapter);
+//					} else {
+//						mProvinceAdapter.notifyDataSetChanged();
+//					}
+
 					break;
 				case 2: // city1
 					mCity1List = (ArrayList<Area>) object;
 					mCitys1 = getNameList(mCity1List);
-					if (mCity1Adapter == null) {
+//					if (mCity1Adapter == null) {
 						mCity1Adapter = new ArrayAdapter<String>(
 								PublishActivity.this, R.layout.item_spinner,
 								mCitys1);
-					}
-					mCity1Adapter.notifyDataSetChanged();
+						mCity1.setAdapter(mCity1Adapter);
+//					} else {
+//						mCity1Adapter.notifyDataSetChanged();
+//					}
+
 					break;
 				case 3: // city2
 					mCity2List = (ArrayList<Area>) object;
 					mCitys2 = getNameList(mCity2List);
-					if (mCity2Adapter == null) {
+//					if (mCity2Adapter == null) {
 						mCity2Adapter = new ArrayAdapter<String>(
 								PublishActivity.this, R.layout.item_spinner,
 								mCitys2);
-					}
-					mCity2Adapter.notifyDataSetChanged();
+						mCity2.setAdapter(mCity2Adapter);
+//					} else {
+//						mCity2Adapter.notifyDataSetChanged();
+//					}
+
 					break;
 
 				default:
