@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import android.R.integer;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
@@ -24,19 +25,27 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 
 import com.bmob.BmobProFile;
+import com.bmob.btp.callback.UploadListener;
 import com.xue.trainingclass.adapter.PublishConnectPersonListAdapter;
 import com.xue.trainingclass.adapter.PublishImgListAdapter;
 import com.xue.trainingclass.bean.Area;
 import com.xue.trainingclass.bean.Constant;
 import com.xue.trainingclass.bean.Publish_Class;
+import com.xue.trainingclass.bean.User;
+import com.xue.trainingclass.event.ProgressChangeEvent;
+import com.xue.trainingclass.event.UploadSuccess;
 import com.xue.trainingclass.tool.CommonTools;
 import com.xue.trainingclass.view.CommonDialog;
 import com.xue.trainingclass.view.CommonDialog.onComDialogBtnClick;
 import com.xue.trainingclass.view.GalleryActivity;
+
+import de.greenrobot.event.EventBus;
 
 public class PublishActivity extends Activity {
 
@@ -47,7 +56,8 @@ public class PublishActivity extends Activity {
 	private CheckBox mSummerClass, mWeekendClass;
 	private TextView mBtnAddImg, mBtnAddConnectPerson;
 	private GridView mImgGridView;
-	private ArrayList<String> mImgList = new ArrayList<String>();
+	private ArrayList<String> mImgList = new ArrayList<String>(); //图片本地路径
+	private ArrayList<HashMap<String, String>> mImgCloudList=new ArrayList<HashMap<String, String>>(); //图片名称和云路径
 	private PublishImgListAdapter mImgListAdapter;
 
 	private ListView mPersonLV;
@@ -60,7 +70,7 @@ public class PublishActivity extends Activity {
 	private String[] mProvinces, mCitys1, mCitys2; // 用于显示
 	private ArrayList<Area> mProvinceList, mCity1List, mCity2List;
 	private Button mPublish;
-	LinearLayout.LayoutParams  listviewLP;
+	LinearLayout.LayoutParams listviewLP;
 	// 最终要保存的数据
 	private Publish_Class mClassInfo;
 
@@ -98,6 +108,12 @@ public class PublishActivity extends Activity {
 		mPersonLV = (ListView) findViewById(R.id.connectPersonLV);
 		mPublish = (Button) findViewById(R.id.publish);
 
+		User currentUser=BmobUser.getCurrentUser(PublishActivity.this, User.class);
+		if(currentUser.getStoreIntroduction()!=null && !currentUser.getStoreIntroduction().equals("")){
+			mStoreIntroduction.setText(currentUser.getStoreIntroduction());
+		}else{
+			mStoreIntroduction.setHint("您暂时还没有商家简介，请在用户详情中完善");
+		}
 		mPersonListAdapter = new PublishConnectPersonListAdapter(
 				mConnectInfoList, PublishActivity.this);
 		mPersonLV.setAdapter(mPersonListAdapter);
@@ -267,37 +283,91 @@ public class PublishActivity extends Activity {
 			mClassInfo.setIsWeekendClass(mWeekendClass.isChecked());
 			mClassInfo.setPrice(price);
 			mClassInfo.setClassDescription(classDescription);
-			mClassInfo.setImgList(CommonTools.getImgListJSON(mImgList));
 			mClassInfo.setAddress(address);
 			mClassInfo.setConnectInfo(CommonTools
 					.getConnectInfoJSON(mConnectInfoList));
 
 			CommonTools.createLoadingDialog(PublishActivity.this).show();
-//BmobProFile.getInstance(PublishActivity.this).upload(filePath, uploadListener)
-			mClassInfo.save(PublishActivity.this, new SaveListener() {
+			if(mImgList.size()>0){
+				uploadImgs();
+			}else{
+				//发布
+				doPublish();
+			}
 
-				@Override
-				public void onSuccess() {
-					CommonTools.cancleDialog();
-					Toast.makeText(PublishActivity.this,
-							getResources().getString(R.string.publishSucceed),
-							1).show();
-
-					finish();
-				}
-
-				@Override
-				public void onFailure(int arg0, String arg1) {
-					CommonTools.cancleDialog();
-					Toast.makeText(PublishActivity.this,
-							getResources().getString(R.string.publishFail), 1)
-							.show();
-				}
-			});
+		
 
 		}
 	}
 
+	private void doPublish(){
+		User currentUser=BmobUser.getCurrentUser(PublishActivity.this, User.class);
+		mClassInfo.setAuthorId(currentUser.getObjectId());
+		mClassInfo.setStoreName(currentUser.getStoreName());
+		mClassInfo.setImgList(CommonTools.getImgListJSON(mImgCloudList));
+		mClassInfo.save(PublishActivity.this, new SaveListener() {
+
+			@Override
+			public void onSuccess() {
+				CommonTools.cancleDialog();
+				Toast.makeText(PublishActivity.this,
+						getResources().getString(R.string.publishSucceed),
+						1).show();
+
+				finish();
+			}
+
+			@Override
+			public void onFailure(int arg0, String arg1) {
+				CommonTools.cancleDialog();
+				Toast.makeText(PublishActivity.this,
+						getResources().getString(R.string.publishFail), 1)
+						.show();
+			}
+		});
+	}
+	private void uploadImgs(){
+		Intent intent=new Intent(PublishActivity.this,ProgressDialog.class);
+		startActivity(intent);
+		BmobProFile.getInstance(PublishActivity.this).upload(mImgList.get(0), new UploadListener() {
+			
+			@Override
+			public void onError(int arg0, String arg1) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onSuccess(String fileName, String url, BmobFile file) {
+				// TODO Auto-generated method stub
+				HashMap<String, String> img=new HashMap<String, String>();
+				img.put("imgName", fileName);
+				img.put("imgUrl", file.getUrl());
+				mImgCloudList.add(img);
+				mImgList.remove(0);
+				EventBus.getDefault().post(new UploadSuccess());
+				if(mImgList.size()>0){
+					uploadImgs();
+				}else{
+					//发布
+					doPublish();
+				}
+			}
+			
+			@Override
+			public void onProgress(int arg0) {
+				EventBus.getDefault().post(new ProgressChangeEvent(getImgName(mImgList.get(0)),arg0));
+				
+			}
+		});
+	}
+	
+	private String getImgName(String path){
+		String name;
+		String[] names=path.split("/");
+		name=names[names.length-1];
+		return name;
+	}
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == REQUEST_PICK_PHOTO) {
@@ -315,7 +385,8 @@ public class PublishActivity extends Activity {
 			mConnectInfoList.add(person);
 
 			mPersonListAdapter.notifyDataSetChanged();
-			listviewLP =new LayoutParams(LayoutParams.FILL_PARENT, mConnectInfoList.size()*100);
+			listviewLP = new LayoutParams(LayoutParams.FILL_PARENT,
+					mConnectInfoList.size() * 100);
 			mPersonLV.setLayoutParams(listviewLP);
 		}
 		super.onActivityResult(requestCode, resultCode, data);
@@ -344,40 +415,40 @@ public class PublishActivity extends Activity {
 				case 1: // 省
 					mProvinceList = (ArrayList<Area>) object;
 					mProvinces = getNameList(mProvinceList);
-//					if (mProvinceAdapter == null) {
-						mProvinceAdapter = new ArrayAdapter<String>(
-								PublishActivity.this, R.layout.item_spinner,
-								mProvinces);
-						mProvince.setAdapter(mProvinceAdapter);
-//					} else {
-//						mProvinceAdapter.notifyDataSetChanged();
-//					}
+					// if (mProvinceAdapter == null) {
+					mProvinceAdapter = new ArrayAdapter<String>(
+							PublishActivity.this, R.layout.item_spinner,
+							mProvinces);
+					mProvince.setAdapter(mProvinceAdapter);
+					// } else {
+					// mProvinceAdapter.notifyDataSetChanged();
+					// }
 
 					break;
 				case 2: // city1
 					mCity1List = (ArrayList<Area>) object;
 					mCitys1 = getNameList(mCity1List);
-//					if (mCity1Adapter == null) {
-						mCity1Adapter = new ArrayAdapter<String>(
-								PublishActivity.this, R.layout.item_spinner,
-								mCitys1);
-						mCity1.setAdapter(mCity1Adapter);
-//					} else {
-//						mCity1Adapter.notifyDataSetChanged();
-//					}
+					// if (mCity1Adapter == null) {
+					mCity1Adapter = new ArrayAdapter<String>(
+							PublishActivity.this, R.layout.item_spinner,
+							mCitys1);
+					mCity1.setAdapter(mCity1Adapter);
+					// } else {
+					// mCity1Adapter.notifyDataSetChanged();
+					// }
 
 					break;
 				case 3: // city2
 					mCity2List = (ArrayList<Area>) object;
 					mCitys2 = getNameList(mCity2List);
-//					if (mCity2Adapter == null) {
-						mCity2Adapter = new ArrayAdapter<String>(
-								PublishActivity.this, R.layout.item_spinner,
-								mCitys2);
-						mCity2.setAdapter(mCity2Adapter);
-//					} else {
-//						mCity2Adapter.notifyDataSetChanged();
-//					}
+					// if (mCity2Adapter == null) {
+					mCity2Adapter = new ArrayAdapter<String>(
+							PublishActivity.this, R.layout.item_spinner,
+							mCitys2);
+					mCity2.setAdapter(mCity2Adapter);
+					// } else {
+					// mCity2Adapter.notifyDataSetChanged();
+					// }
 
 					break;
 

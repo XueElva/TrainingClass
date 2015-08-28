@@ -20,7 +20,7 @@ import cn.bmob.v3.listener.FindListener;
 import com.xue.trainingclass.adapter.ChildMenuAdapter;
 import com.xue.trainingclass.bean.Class;
 
-public class DialogChooseClass extends Activity {
+public class ChooseClassDialog extends Activity {
 
 	private TextView mTitle;
 	private GridView mClassGV;
@@ -50,7 +50,7 @@ public class DialogChooseClass extends Activity {
 					isParentClass=true;
 					mBack.setVisibility(View.INVISIBLE);
 					if(mParentList.size()>0){
-						mAdapter = new ChildMenuAdapter(mParentList, DialogChooseClass.this);
+						mAdapter = new ChildMenuAdapter(mParentList, ChooseClassDialog.this);
 						mClassGV.setAdapter(mAdapter);
 						mTitle.setText(getResources().getString(R.string.chooseParentClass));
 					}else {
@@ -76,7 +76,7 @@ public class DialogChooseClass extends Activity {
 						mBack.setVisibility(View.VISIBLE);
 					}else {
 						//没有子分类
-						Intent intent=new Intent(DialogChooseClass.this,PublishActivity.class);
+						Intent intent=new Intent(ChooseClassDialog.this,PublishActivity.class);
 						intent.putExtra("className", mParentName);
 						intent.putExtra("classId", mParentList.get(position).getClassid());
 						startActivity(intent);
@@ -84,7 +84,7 @@ public class DialogChooseClass extends Activity {
 					}
 					
 				}else{
-					Intent intent=new Intent(DialogChooseClass.this,PublishActivity.class);
+					Intent intent=new Intent(ChooseClassDialog.this,PublishActivity.class);
 					intent.putExtra("className", mParentName+"->"+mChildList.get(position).getClassname());
 					intent.putExtra("classId", mChildList.get(position).getClassid());
 					startActivity(intent);
@@ -106,13 +106,13 @@ public class DialogChooseClass extends Activity {
 		query.setLimit(50);
 
 		// 执行查询方法
-		query.findObjects(DialogChooseClass.this, new FindListener<Class>() {
+		query.findObjects(ChooseClassDialog.this, new FindListener<Class>() {
 			@Override
 			public void onSuccess(List<Class> object) {
 				// TODO Auto-generated method stub
 				mParentList = object;
 				// mMenuAdapter.notifyDataSetChanged();
-				mAdapter = new ChildMenuAdapter(mParentList, DialogChooseClass.this);
+				mAdapter = new ChildMenuAdapter(mParentList, ChooseClassDialog.this);
 				mClassGV.setAdapter(mAdapter);
 				mTitle.setText(getResources().getString(R.string.chooseParentClass));
 			}
@@ -135,12 +135,12 @@ public class DialogChooseClass extends Activity {
 		query.setLimit(50);
 
 		// 执行查询方法
-		query.findObjects(DialogChooseClass.this, new FindListener<Class>() {
+		query.findObjects(ChooseClassDialog.this, new FindListener<Class>() {
 			@Override
 			public void onSuccess(List<Class> object) {
 				// TODO Auto-generated method stub
 				mChildList = object;
-				mAdapter = new ChildMenuAdapter(mChildList, DialogChooseClass.this);
+				mAdapter = new ChildMenuAdapter(mChildList, ChooseClassDialog.this);
 				mClassGV.setAdapter(mAdapter);
 				mTitle.setText(getResources().getString(R.string.chooseChildClass));
 			}

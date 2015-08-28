@@ -50,6 +50,7 @@ public class CommonDialog {
 		});
 		dialog.setContentView(view, new LayoutParams(LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT));
+		dialog.show();
 
 	}
 

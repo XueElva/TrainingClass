@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -47,14 +48,14 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 	private ImageView mAvatar;
 	private ImageView mTag;
 	private TextView mModifyPass;
-	private EditText mUserName, mEmail, mStoreName;
+	private EditText mUserName, mEmail, mStoreName, mStoreIntroduction;
 	private RadioGroup mSexRadio;
 	private RadioButton mMale, mFemale;
 	private Spinner mProvince, mCity1, mCity2;
 	private Button mConfirm;
 	private TextView mAttention;
 	// 商家需填写的
-	private LinearLayout mStoreNameLin, mAreaLin;
+	private LinearLayout mLinStore;
 	private String mSex = Constant.MALE;
 	private boolean mEditable = false;
 
@@ -85,9 +86,9 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 		mProvince = (Spinner) findViewById(R.id.Spin_province);
 		mCity1 = (Spinner) findViewById(R.id.Spin_city);
 		mCity2 = (Spinner) findViewById(R.id.Spin_city2);
+		mStoreIntroduction = (EditText) findViewById(R.id.E_storeIntroduction);
 		mConfirm = (Button) findViewById(R.id.confirm);
-		mStoreNameLin = (LinearLayout) findViewById(R.id.Lin_storeName);
-		mAreaLin = (LinearLayout) findViewById(R.id.Lin_area);
+		mLinStore = (LinearLayout) findViewById(R.id.lin_store);
 		mAttention = (TextView) findViewById(R.id.attention);
 
 		mBack.setOnClickListener(this);
@@ -161,15 +162,16 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 			mMale.setChecked(true);
 		}
 		mEmail.setText(user.getEmail());
-
+		mStoreIntroduction.setText(user.getStoreIntroduction());
 		if (!user.getIsSeller()) {
-			mStoreNameLin.setVisibility(View.GONE);
-			mAreaLin.setVisibility(View.GONE);
+			mLinStore.setVisibility(View.GONE);
 			mIsVIP.setVisibility(View.GONE);
 			mTag.setBackgroundResource(R.drawable.icon_tag_user);
 		} else {
+			mLinStore.setVisibility(View.VISIBLE);
 			mTag.setBackgroundResource(R.drawable.icon_tag_store);
 			mStoreName.setText(user.getStoreName());
+			mStoreIntroduction.setText(user.getStoreIntroduction());
 			mIsVIP.setVisibility(View.VISIBLE);
 			if (user.getIsVIP()) {
 				mIsVIP.setSelected(true);
@@ -205,7 +207,7 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 			user.setUsername(mUserName.getText().toString());
 			user.setSex(mSex);
 			user.setEmail(mEmail.getText().toString());
-
+			user.setStoreIntroduction(mStoreIntroduction.getText().toString());
 			if (currentUser.getIsSeller()) {
 				user.setStoreName(mStoreName.getText().toString());
 				user.setCity("0,0,0");
@@ -275,7 +277,8 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 			setEditable();
 			break;
 		case R.id.modifyPass: // 修改密码
-            startActivity(new Intent(UserInfoActivity.this,PassResetActivity.class));
+			startActivity(new Intent(UserInfoActivity.this,
+					PassResetActivity.class));
 			break;
 		case R.id.back:
 			finish();
@@ -313,11 +316,11 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == Constant.GET_PIC_FROM_ALBUM) {
 			CommonTools.createLoadingDialog(UserInfoActivity.this).show();
-//			Uri uri = data.getData();
-//			final String filePath = getImagPath(uri);
-			final String filePath=sdcardTempFile.getAbsolutePath();
+			// Uri uri = data.getData();
+			// final String filePath = getImagPath(uri);
+			final String filePath = sdcardTempFile.getAbsolutePath();
 			File file = new File(filePath);
-			if (file.exists() && null!=data) {
+			if (file.exists() && null != data) {
 				// 判断文件大小
 				if (FileSizeUtil.getFileOrFilesSize(filePath,
 						FileSizeUtil.SIZETYPE_MB) > 1) {
@@ -331,7 +334,7 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 					changeAvatar(filePath);
 				}
 
-			}else{
+			} else {
 				CommonTools.cancleDialog();
 			}
 
@@ -466,12 +469,10 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 					@Override
 					public void onProgress(int progress) {
 						// TODO Auto-generated method stub
-
 					}
 				});
 
 	}
-
 
 	// 设置是否可编辑
 	private void setEditable() {

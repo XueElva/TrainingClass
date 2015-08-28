@@ -15,7 +15,7 @@ import android.widget.GridView;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 
-import com.xue.trainingclass.activity.DialogChildMenu;
+import com.xue.trainingclass.activity.ChildMenuDialog;
 import com.xue.trainingclass.activity.R;
 import com.xue.trainingclass.adapter.MenuAdapter;
 import com.xue.trainingclass.bean.Class;
@@ -91,7 +91,7 @@ public class MenuFragment extends Fragment {
 				if (clas.getType().equals("parent") && clas.getHaschild()) {
 					// 有子分类
 					Intent intent = new Intent(getActivity(),
-							DialogChildMenu.class);
+							ChildMenuDialog.class);
 					intent.putExtra("parentId", clas.getClassid());
 					startActivityForResult(intent, 4);
 					

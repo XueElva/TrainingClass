@@ -36,7 +36,6 @@
             android:textSize="16sp" />
     </RelativeLayout>
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -206,42 +205,40 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/Lin_storeName"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:text="店铺名称:"
-                    android:textSize="15sp" />
-
-                <EditText
-                    android:id="@+id/E_storeName"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/input_shape"
-                    android:paddingLeft="10dp"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/Lin_area"
+                android:id="@+id/lin_store"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="40dp"
                 android:orientation="vertical" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center"
+                        android:text="店铺名称:"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/E_storeName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/input_shape"
+                        android:paddingLeft="10dp"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
@@ -253,11 +250,11 @@
                         android:text="所属城市:"
                         android:textSize="15sp" />
 
-                    <LinearLayout
+                    <View
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1" >
-                    </LinearLayout>
+                    </View>
                 </LinearLayout>
 
                 <LinearLayout
@@ -288,12 +285,45 @@
                         android:layout_weight="1"
                         android:background="@drawable/input_shape" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center"
+                        android:text="商家简介："
+                        android:textSize="15sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" >
+                    </View>
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/E_storeIntroduction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/input_shape"
+                    android:minHeight="60dp"
+                    android:padding="3dp"
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <Button
                 android:id="@+id/confirm"
                 android:layout_width="match_parent"
                 android:layout_height="45dip"
+                android:layout_marginTop="30dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="10dip"
@@ -308,8 +338,8 @@
                 android:id="@+id/attention"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="*请正确填写邮箱地址，当您忘记密码时，可通过该邮箱重置密码"
                 android:textColor="@color/blue_selected"

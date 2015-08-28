@@ -160,7 +160,7 @@ public class MainActivity extends FragmentActivity implements
 				break;
 			case R.id.ll_publish:
 				Intent intent = new Intent(MainActivity.this,
-						DialogChooseClass.class);
+						ChooseClassDialog.class);
 				startActivity(intent);
 				break;
 

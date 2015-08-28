@@ -8,9 +8,28 @@
  <com.xue.trainingclass.view.HotHeaderPager
         android:id="@+id/hotpager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="150dp" >
     </com.xue.trainingclass.view.HotHeaderPager>
-    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:gravity="right"
+        android:background="@color/white">
+        <CheckBox 
+            android:id="@+id/isSummerOrWinnerClass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="寒暑班"/>
+         <CheckBox 
+            android:id="@+id/isWeekendClass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="周末班"
+            android:layout_marginLeft="20dp"/>
+    </LinearLayout>
+    <include layout="@layout/shadow_bottom"/>
     <com.xue.trainingclass.view.XListView
         android:id="@+id/classLV"
         android:layout_width="match_parent"

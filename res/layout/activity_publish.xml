@@ -153,7 +153,7 @@
                         android:id="@+id/isSummerClass"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="暑期班"
+                        android:text="寒暑期班"
                         android:textSize="13sp" />
 
                     <CheckBox
@@ -239,8 +239,7 @@
             <GridView
                 android:id="@+id/imgGV"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="70dp"
+                android:layout_height="80dp"
                 android:layout_marginTop="10dp"
                 android:horizontalSpacing="1dp"
                 android:numColumns="3"

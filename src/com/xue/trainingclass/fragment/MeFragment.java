@@ -20,6 +20,7 @@ import com.bmob.BmobProFile;
 import com.bmob.btp.callback.DownloadListener;
 import com.xue.trainingclass.activity.CompleteInfoActivity;
 import com.xue.trainingclass.activity.MainActivity;
+import com.xue.trainingclass.activity.MyCollectionActivity;
 import com.xue.trainingclass.activity.R;
 import com.xue.trainingclass.activity.SettingActivity;
 import com.xue.trainingclass.activity.UserInfoActivity;
@@ -155,6 +156,9 @@ public class MeFragment extends Fragment implements OnClickListener {
 		break;
 		case R.id.becomeToSeller:
 			startActivityForResult(new Intent(getActivity(),CompleteInfoActivity.class), 1);
+			break;
+		case R.id.myCollection:
+			startActivity(new Intent(getActivity(),MyCollectionActivity.class));
 			break;
 		default:
 			break;

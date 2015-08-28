@@ -7,6 +7,7 @@ import cn.bmob.v3.BmobObject;
 //课程
 public class Publish_Class extends BmobObject implements Serializable{
 private String authorId; //作者id
+private String storeName; //店铺名称
 private String classTypeId; //课程对应id
 private String title; //标题
 private String toward; //面向对象
@@ -15,12 +16,21 @@ private String cycle; //课程周期
 private Boolean isSummerClass; //是否是暑期班
 private Boolean isWeekendClass; //是否是周末班
 private String price; //价格
-private String imgList; //图片名称列，json，最多三张[{"imgName":""},{"imgName":""},{"imgName":""}]
+private String imgList; //图片名称列，json，最多三张[{"imgName":"","imgUrl":""},{"imgName":"","imgUrl":""},{"imgName":"","imgUrl":""}]
 private String address; //地址
 private String cityId; //区域id
 private String connectInfo; //联系人信息，json，最多三个[{"name":"","phone":""},{"name":"","phone":""},{"name":"","phone":""}]
 private String storeBriefIntroduction; //企业简介
 private String classDescription; //课程简介
+
+
+
+public String getStoreName() {
+	return storeName;
+}
+public void setStoreName(String storeName) {
+	this.storeName = storeName;
+}
 public String getAuthorId() {
 	return authorId;
 }

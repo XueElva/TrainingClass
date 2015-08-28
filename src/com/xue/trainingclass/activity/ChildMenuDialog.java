@@ -18,7 +18,7 @@ import com.xue.trainingclass.adapter.ChildMenuAdapter;
 import com.xue.trainingclass.bean.Class;
 import com.xue.trainingclass.bean.Constant;
 
-public class DialogChildMenu extends Activity {
+public class ChildMenuDialog extends Activity {
 
 	GridView mChildMenuGV;
 	ChildMenuAdapter mChildAdapter;
@@ -65,12 +65,12 @@ public class DialogChildMenu extends Activity {
 		query.setLimit(50);
 
 		// 执行查询方法
-		query.findObjects(DialogChildMenu.this, new FindListener<Class>() {
+		query.findObjects(ChildMenuDialog.this, new FindListener<Class>() {
 			@Override
 			public void onSuccess(List<Class> object) {
 				// TODO Auto-generated method stub
 				mChildList = object;
-				mChildAdapter = new ChildMenuAdapter(mChildList, DialogChildMenu.this);
+				mChildAdapter = new ChildMenuAdapter(mChildList, ChildMenuDialog.this);
 				mChildMenuGV.setAdapter(mChildAdapter);
 
 			}

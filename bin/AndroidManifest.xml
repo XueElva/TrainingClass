@@ -88,14 +88,21 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xue.trainingclass.activity.DialogChildMenu"
+            android:name="com.xue.trainingclass.activity.ChildMenuDialog"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+          <activity
+            android:name="com.xue.trainingclass.activity.ProgressDialog"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
         <activity
-            android:name="com.xue.trainingclass.activity.DialogChooseClass"
+            android:name="com.xue.trainingclass.activity.ChooseClassDialog"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
