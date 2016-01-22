@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,10 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.xu.view.PagerSlidingTabStrip;
 import com.xue.trainingclass.activity.R;
 import com.xue.trainingclass.adapter.HomePageAdapter;
-import com.xue.trainingclass.view.PagerSlidingTabStrip;
-import com.xue.trainingclass.view.PagerSlidingTabStrip.OnPageSelectedListener;
 
 public class HomeFragment extends Fragment implements OnClickListener {
 
@@ -77,10 +77,11 @@ public class HomeFragment extends Fragment implements OnClickListener {
 		mAdapter = new HomePageAdapter(getFragmentManager(), mFragmentList);
 		mVP.setAdapter(mAdapter);
 		mNavigationBar.setViewPager(mVP);
-		mNavigationBar.setPageSelectedListener(new OnPageSelectedListener() {
-
+		mVP.setOnPageChangeListener(new OnPageChangeListener() {
+			
 			@Override
 			public void onPageSelected(int position) {
+
 				for (int i = 0; i < mTitleList.size(); i++) {
 					if (i != position) {
 						mTitleList.get(i).setVisibility(View.GONE);
@@ -89,6 +90,19 @@ public class HomeFragment extends Fragment implements OnClickListener {
 					}
 				}
 
+			
+			}
+			
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ptr="http://schemas.android.com/apk/res/com.xue.trainingclass.activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -22,14 +23,16 @@
             android:textSize="20sp" />
     </RelativeLayout>
 
-    <com.xue.trainingclass.view.XListView
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/collectionLV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@color/white"
         android:dividerHeight="10dp"
-        android:scrollbars="@null" >
-    </com.xue.trainingclass.view.XListView>
+        android:scrollbars="@null"
+        ptr:ptrDrawable="@drawable/ic_launcher"
+        ptr:ptrMode="both" >
+    </com.handmark.pulltorefresh.library.PullToRefreshListView>
 
 </LinearLayout>

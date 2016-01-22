@@ -32,6 +32,8 @@ import cn.bmob.v3.listener.SaveListener;
 
 import com.bmob.BmobProFile;
 import com.bmob.btp.callback.UploadListener;
+import com.xu.view.ExpandedGridView;
+import com.xu.view.ExpandedListView;
 import com.xue.trainingclass.adapter.PublishConnectPersonListAdapter;
 import com.xue.trainingclass.adapter.PublishImgListAdapter;
 import com.xue.trainingclass.bean.Area;
@@ -55,12 +57,12 @@ public class PublishActivity extends Activity {
 			mClassDescription, mAddr;
 	private CheckBox mSummerClass, mWeekendClass;
 	private TextView mBtnAddImg, mBtnAddConnectPerson;
-	private GridView mImgGridView;
+	private ExpandedGridView mImgGridView;
 	private ArrayList<String> mImgList = new ArrayList<String>(); //图片本地路径
 	private ArrayList<HashMap<String, String>> mImgCloudList=new ArrayList<HashMap<String, String>>(); //图片名称和云路径
 	private PublishImgListAdapter mImgListAdapter;
 
-	private ListView mPersonLV;
+	private ExpandedListView mPersonLV;
 	private PublishConnectPersonListAdapter mPersonListAdapter;
 	private ArrayList<HashMap<String, String>> mConnectInfoList = new ArrayList<HashMap<String, String>>();
 
@@ -100,12 +102,12 @@ public class PublishActivity extends Activity {
 		mClassDescription = (EditText) findViewById(R.id.classDescription);
 		mBtnAddImg = (TextView) findViewById(R.id.addImg);
 		mBtnAddConnectPerson = (TextView) findViewById(R.id.addConnectPerson);
-		mImgGridView = (GridView) findViewById(R.id.imgGV);
+		mImgGridView = (ExpandedGridView) findViewById(R.id.imgGV);
 		mAddr = (EditText) findViewById(R.id.address);
 		mProvince = (Spinner) findViewById(R.id.Spin_province);
 		mCity1 = (Spinner) findViewById(R.id.Spin_city);
 		mCity2 = (Spinner) findViewById(R.id.Spin_city2);
-		mPersonLV = (ListView) findViewById(R.id.connectPersonLV);
+		mPersonLV = (ExpandedListView) findViewById(R.id.connectPersonLV);
 		mPublish = (Button) findViewById(R.id.publish);
 
 		User currentUser=BmobUser.getCurrentUser(PublishActivity.this, User.class);

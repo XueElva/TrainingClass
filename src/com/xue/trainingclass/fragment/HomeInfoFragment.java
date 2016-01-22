@@ -13,17 +13,18 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.FindListener;
 
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.xue.trainingclass.activity.R;
 import com.xue.trainingclass.adapter.ClassListAdapter;
 import com.xue.trainingclass.bean.CollectionClass;
 import com.xue.trainingclass.bean.Publish_Class;
 import com.xue.trainingclass.bean.User;
-import com.xue.trainingclass.view.XListView;
-import com.xue.trainingclass.view.XListView.IXListViewListener;
 
-public class HomeInfoFragment extends Fragment implements IXListViewListener {
+public class HomeInfoFragment extends Fragment {
 
-	private XListView mClassLV;
+	private PullToRefreshListView mClassLV;
 	private ClassListAdapter mAdapter;
 	ArrayList<Publish_Class> mClassList = new ArrayList<Publish_Class>();
 	ArrayList<String> mCollectedClassIdList = new ArrayList<String>(); // 已收藏的列表的classid列
@@ -37,14 +38,25 @@ public class HomeInfoFragment extends Fragment implements IXListViewListener {
 
 		View view = View.inflate(getActivity(), R.layout.fragment_home_info,
 				null);
-		mClassLV = (XListView) view.findViewById(R.id.classLV);
-		mClassLV.setPullLoadEnable(true);
-		mClassLV.setPullRefreshEnable(true);
-		mClassLV.setXListViewListener(this);
+		mClassLV = (PullToRefreshListView) view.findViewById(R.id.classLV);
+		mClassLV.setOnRefreshListener(new OnRefreshListener2() {
+
+			@Override
+			public void onPullDownToRefresh(PullToRefreshBase refreshView) {
+				page = 0;
+				getClassList();
+
+			}
+
+			@Override
+			public void onPullUpToRefresh(PullToRefreshBase refreshView) {
+				getClassList();
+
+			}
+		});
 		mAdapter = new ClassListAdapter(mClassList, getActivity(),
 				mCollectedClassIdList, mCollectedList);
 		mClassLV.setAdapter(mAdapter);
-
 		getCollectedList();
 		return view;
 	}
@@ -53,27 +65,29 @@ public class HomeInfoFragment extends Fragment implements IXListViewListener {
 	 * 获取收藏列表
 	 */
 	private void getCollectedList() {
-		BmobQuery<CollectionClass> query = new BmobQuery<CollectionClass>();
-		query.addWhereEqualTo("userId",
-				BmobUser.getCurrentUser(getActivity(), User.class)
-						.getObjectId());
-		// 限制用户最多收藏500条数据
-		query.setLimit(500);
-		query.findObjects(getActivity(), new FindListener<CollectionClass>() {
+		User currentUser = BmobUser.getCurrentUser(getActivity(), User.class);
+		if (currentUser != null) {
+			BmobQuery<CollectionClass> query = new BmobQuery<CollectionClass>();
+			query.addWhereEqualTo("userId", currentUser.getObjectId());
+			// 限制用户最多收藏500条数据
+			query.setLimit(500);
+			query.findObjects(getActivity(),
+					new FindListener<CollectionClass>() {
 
-			@Override
-			public void onError(int arg0, String arg1) {
-				// TODO Auto-generated method stub
+						@Override
+						public void onError(int arg0, String arg1) {
+							// TODO Auto-generated method stub
 
-			}
+						}
 
-			@Override
-			public void onSuccess(List<CollectionClass> arg0) {
-				mCollectedList = (ArrayList<CollectionClass>) arg0;
-				getCollectedClassIdList();
-			}
+						@Override
+						public void onSuccess(List<CollectionClass> arg0) {
+							mCollectedList = (ArrayList<CollectionClass>) arg0;
+							getCollectedClassIdList();
+						}
 
-		});
+					});
+		}
 
 	}
 
@@ -105,6 +119,7 @@ public class HomeInfoFragment extends Fragment implements IXListViewListener {
 
 			@Override
 			public void onSuccess(List<Publish_Class> classList) {
+				mClassLV.onRefreshComplete();
 				if (classList.size() > 0) {
 					mClassList.addAll(classList);
 					mAdapter.notifyDataSetChanged();
@@ -121,7 +136,7 @@ public class HomeInfoFragment extends Fragment implements IXListViewListener {
 
 			@Override
 			public void onError(int arg0, String arg1) {
-				// TODO Auto-generated method stub
+				mClassLV.onRefreshComplete();
 				Toast.makeText(
 						getActivity(),
 						getActivity().getResources().getString(
@@ -131,16 +146,4 @@ public class HomeInfoFragment extends Fragment implements IXListViewListener {
 
 	}
 
-	@Override
-	public void onRefresh() {
-		// TODO Auto-generated method stub
-		page = 0;
-		getClassList();
-	}
-
-	@Override
-	public void onLoadMore() {
-		// TODO Auto-generated method stub
-		getClassList();
-	}
 }

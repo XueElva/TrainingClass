@@ -163,6 +163,12 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
+         <activity
+            android:name="com.xue.trainingclass.activity.MyCollectionActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
         <activity android:name="com.xue.trainingclass.view.GalleryActivity" >
             <intent-filter>
                 <action android:name="com.ns.mutiphotochoser.sample.action.CHOOSE_PHOTOS" />

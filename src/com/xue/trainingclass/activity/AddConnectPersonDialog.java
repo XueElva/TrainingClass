@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.xu.utils.PatternCheckUtils;
 import com.xue.trainingclass.bean.Constant;
 
 public class AddConnectPersonDialog extends Activity {
@@ -32,18 +33,23 @@ public class AddConnectPersonDialog extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				String phone = mPhoneET.getText().toString();
 				if (mNameET.getText().length() == 0) {
 					Toast.makeText(AddConnectPersonDialog.this,
 							getResources().getString(R.string.inputName), 1)
 							.show();
-				} else if (mPhoneET.getText().length() == 0) {
+				} else if (phone.length() == 0) {
 					Toast.makeText(AddConnectPersonDialog.this,
 							getResources().getString(R.string.inputPhone), 1)
 							.show();
+				} else if (!PatternCheckUtils.isPhone(phone)
+						&& !PatternCheckUtils.isMobile(phone)) {
+					Toast.makeText(AddConnectPersonDialog.this,
+							getResources().getString(R.string.phoneError), 1)
+							.show();
 				} else {
 					mName = mNameET.getText().toString();
-					mPhone = mPhoneET.getText().toString();
+					mPhone = phone;
 					finish();
 				}
 			}
@@ -59,11 +65,11 @@ public class AddConnectPersonDialog extends Activity {
 		});
 
 	}
-	
+
 	@Override
 	public void finish() {
-		if(mName!=null){
-			Intent intent=new Intent();
+		if (mName != null) {
+			Intent intent = new Intent();
 			intent.putExtra("name", mName);
 			intent.putExtra("phone", mPhone);
 			setResult(Constant.ADD_CONNECTPERSON, intent);

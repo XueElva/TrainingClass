@@ -3,17 +3,6 @@ package com.xue.trainingclass.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.listener.FindListener;
-
-import com.xue.trainingclass.bean.CollectionClass;
-import com.xue.trainingclass.bean.Publish_Class;
-import com.xue.trainingclass.bean.User;
-import com.xue.trainingclass.view.XListView;
-import com.xue.trainingclass.view.XListView.IXListViewListener;
-
-import android.R.integer;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,11 +10,20 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.listener.FindListener;
 
-public class MyCollectionActivity extends Activity implements
-		IXListViewListener {
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.xue.trainingclass.bean.CollectionClass;
+import com.xue.trainingclass.bean.Publish_Class;
+import com.xue.trainingclass.bean.User;
+
+public class MyCollectionActivity extends Activity {
 	TextView mBack;
-	XListView mCollectionLV;
+	PullToRefreshListView mCollectionLV;
 	ArrayList<Publish_Class> mClassList = new ArrayList<Publish_Class>();
 	ArrayList<CollectionClass> mCollectedList = new ArrayList<CollectionClass>(); // 已收藏的列表
 
@@ -35,8 +33,29 @@ public class MyCollectionActivity extends Activity implements
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_mycollection);
 
+		initView();
+		
+		getCollectionList();
+	}
+
+	private void initView() {
 		mBack = (TextView) findViewById(R.id.back);
-		mCollectionLV = (XListView) findViewById(R.id.collectionLV);
+		mCollectionLV = (PullToRefreshListView) findViewById(R.id.collectionLV);
+		mCollectionLV.setOnRefreshListener(new OnRefreshListener2() {
+
+			@Override
+			public void onPullDownToRefresh(PullToRefreshBase refreshView) {
+				page=0;
+				getCollectionList();
+				
+			}
+
+			@Override
+			public void onPullUpToRefresh(PullToRefreshBase refreshView) {
+				// TODO Auto-generated method stub
+				getCollectionList();
+			}
+		});
 		mBack.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -45,12 +64,7 @@ public class MyCollectionActivity extends Activity implements
 				finish();
 			}
 		});
-
-		mCollectionLV.setPullLoadEnable(true);
-		mCollectionLV.setPullRefreshEnable(true);
-		mCollectionLV.setXListViewListener(this);
-
-		getCollectionList();
+		
 	}
 
 	/**
@@ -102,15 +116,4 @@ public class MyCollectionActivity extends Activity implements
 
 	}
 
-	@Override
-	public void onRefresh() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onLoadMore() {
-		// TODO Auto-generated method stub
-
-	}
 }

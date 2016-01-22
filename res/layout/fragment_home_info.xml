@@ -1,42 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 最新课程 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ptr="http://schemas.android.com/apk/res/com.xue.trainingclass.activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
- <com.xue.trainingclass.view.HotHeaderPager
+
+    <com.xu.view.HotHeaderPager
         android:id="@+id/hotpager"
         android:layout_width="match_parent"
         android:layout_height="150dp" >
-    </com.xue.trainingclass.view.HotHeaderPager>
-    <LinearLayout 
+    </com.xu.view.HotHeaderPager>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:orientation="horizontal"
+        android:background="@color/white"
         android:gravity="right"
-        android:background="@color/white">
-        <CheckBox 
+        android:orientation="horizontal"
+        android:padding="5dp" >
+
+        <CheckBox
             android:id="@+id/isSummerOrWinnerClass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="寒暑班"/>
-         <CheckBox 
+            android:text="寒暑班" />
+
+        <CheckBox
             android:id="@+id/isWeekendClass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="周末班"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginLeft="20dp"
+            android:text="周末班" />
     </LinearLayout>
-    <include layout="@layout/shadow_bottom"/>
-    <com.xue.trainingclass.view.XListView
+
+    <include layout="@layout/shadow_bottom" />
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/classLV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@color/white"
         android:dividerHeight="10dp"
-        android:scrollbars="@null">
-        </com.xue.trainingclass.view.XListView>
+        android:scrollbars="@null"
+        ptr:ptrDrawable="@drawable/ic_launcher"
+        ptr:ptrMode="both" >
+    </com.handmark.pulltorefresh.library.PullToRefreshListView>
+
 </LinearLayout>

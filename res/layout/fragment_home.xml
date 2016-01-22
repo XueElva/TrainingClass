@@ -92,7 +92,7 @@
         </LinearLayout>
     </FrameLayout>
 
-    <com.xue.trainingclass.view.PagerSlidingTabStrip
+    <com.xu.view.PagerSlidingTabStrip
         android:id="@+id/navigationBar"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -102,7 +102,7 @@
         trainingclass:pstsUnderlineHeight="1dp"
         trainingclass:pstsIndicatorColor="@color/blue_selected"
         trainingclass:pstsUnderlineColor="@color/blue_selected" >
-    </com.xue.trainingclass.view.PagerSlidingTabStrip>
+    </com.xu.view.PagerSlidingTabStrip>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/homeVP"

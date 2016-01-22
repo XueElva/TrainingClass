@@ -54,7 +54,7 @@
         android:layout_centerHorizontal="true"
         android:layout_above="@id/sendEmail"
         android:background="@drawable/input_shape"
-        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.@"
         android:padding="5dp"
         android:textSize="15sp" />
     
